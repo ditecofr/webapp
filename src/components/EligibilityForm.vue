@@ -1,6 +1,8 @@
 <template>
   <div class="bg-white rounded-lg border-2 border-gray-200 p-8">
-    <h2 class="text-2xl font-bold text-center mb-8">Calculer le montant de vos primes</h2>
+    <h2 v-if="!showSuccess" class="text-2xl font-bold text-center mb-8">
+      Calculer le montant de vos primes
+    </h2>
 
     <!-- Progress bar -->
     <div v-if="currentStep <= 6" class="flex items-center justify-between mb-8">
@@ -25,7 +27,7 @@
     </div>
 
     <!-- Form eligibilityForm -->
-    <div class="mb-8">
+    <div class="mb-8" v-if="!showSuccess">
       <h3 class="text-xl font-bold text-center mb-2">{{ currentStepTitle }}</h3>
       <p v-if="currentStep <= 6" class="text-center text-gray-500">Étape {{ currentStep }} / 6</p>
     </div>
@@ -42,7 +44,7 @@
               : currentStep === 4 || currentStep === 6
                 ? 'grid-cols-2'
                 : (eligibilityForm[currentStep].options?.length ?? 0) > 2
-                  ? 'grid-cols-4'
+                  ? 'lg:grid-cols-4 sm:grid-cols-2'
                   : 'grid-cols-2',
           ]"
         >
@@ -83,30 +85,49 @@
             </label>
             <input
               :id="input.label"
-              v-model="input.value"
+              v-model="formResponses[7][input.label]"
               :type="input.type"
               :placeholder="input.placeholder"
               class="p-3 border border-gray-300 rounded-lg focus:ring-[#56B476] focus:border-[#56B476]"
+              @input="(e) => updateFormResponse(e, input.label)"
             />
           </div>
         </div>
 
         <!-- Navigation buttons -->
-        <div class="flex justify-between gap-4 pt-8">
+        <div class="flex flex-col-reverse sm:flex-row justify-between gap-4 pt-8">
           <button
             v-if="currentStep > 1"
             @click="previousStep"
-            class="px-6 py-2 bg-[#1B2A3B] text-white rounded-full hover:bg-opacity-90"
+            class="w-full sm:w-auto px-6 py-2 bg-[#1B2A3B] text-white rounded-full hover:bg-opacity-90"
           >
             Précédent
           </button>
-          <button
-            @click="currentStep === 7 ? submitForm() : nextStep()"
-            :disabled="!isCurrentStepValid"
-            class="px-6 py-2 bg-[#56B476] text-white rounded-full hover:bg-opacity-90 ml-auto disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {{ currentStep === 7 ? 'Recevoir le calcul' : 'Continuer' }}
-          </button>
+          <div class="flex flex-col items-end gap-2">
+            <p v-if="showError" class="text-red-500 text-sm">
+              {{
+                currentStep === 7
+                  ? 'Veuillez remplir tous les champs'
+                  : 'Veuillez faire un choix pour continuer'
+              }}
+            </p>
+            <button
+              @click="currentStep === 7 ? submitForm() : nextStep()"
+              :disabled="currentStep === 7 && !isCurrentStepValid"
+              class="w-full sm:w-auto px-6 py-2 bg-[#56B476] text-white rounded-full hover:bg-opacity-90 sm:ml-auto disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {{ currentStep === 7 ? 'Recevoir le calcul' : 'Continuer' }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div v-else>
+        <div class="text-center space-y-4">
+          <CheckIcon class="w-16 h-16 text-[#56B476] mx-auto" />
+          <h3 class="text-2xl font-bold">Félicitations !</h3>
+          <p class="text-gray-600">
+            Nous vous contacterons prochainement pour vous communiquer le montant de vos primes.
+          </p>
         </div>
       </div>
     </div>
@@ -119,8 +140,11 @@ import { CheckIcon } from 'lucide-vue-next'
 import type { LucideIcon } from 'lucide-vue-next'
 
 const currentStep = ref(1)
-const formResponses = ref<Record<number, string>>({})
+const formResponses = ref<Record<number, Record<string, string>>>({
+  7: {},
+})
 const showSuccess = ref(false)
+const showError = ref(false)
 
 interface EligibilityForm {
   title: string
@@ -295,8 +319,11 @@ const isCurrentStepValid = computed(() => {
     return formResponses.value[currentStep.value] !== undefined
   }
 
-  if (currentFormStep.inputs) {
-    return currentFormStep.inputs.every((input) => input.value.trim() !== '')
+  if (currentFormStep.inputs && currentStep.value === 7) {
+    return currentFormStep.inputs.every((input) => {
+      const value = formResponses.value[7][input.label]
+      return value !== undefined && value !== null && String(value).trim() !== ''
+    })
   }
 
   return false
@@ -304,11 +331,16 @@ const isCurrentStepValid = computed(() => {
 
 const nextStep = () => {
   if (!isCurrentStepValid.value) {
+    showError.value = true
     return
   }
 
-  if (currentStep.value === 5 && formResponses.value[5] === 'no_share_income') {
-    currentStep.value = 7 // Skip step 6 if user doesn't want to share income
+  showError.value = false
+  if (
+    currentStep.value === 5 &&
+    formResponses.value[5]?.['no_share_income'] === 'no_share_income'
+  ) {
+    currentStep.value = 7
   } else if (currentStep.value < 7) {
     currentStep.value++
   }
@@ -316,7 +348,10 @@ const nextStep = () => {
 
 const previousStep = () => {
   if (currentStep.value > 1) {
-    if (currentStep.value === 7 && formResponses.value[5] === 'no_share_income') {
+    if (
+      currentStep.value === 7 &&
+      formResponses.value[5]?.['no_share_income'] === 'no_share_income'
+    ) {
       currentStep.value = 5 // Go back to step 5 if step 6 was skipped
     } else {
       currentStep.value--
@@ -336,11 +371,18 @@ const submitForm = () => {
 }
 
 const selectOption = (value: string) => {
-  formResponses.value[currentStep.value] = value
+  formResponses.value[currentStep.value] = { [value]: value }
   nextStep()
 }
 
 const getImageUrl = (imageName: string) => {
   return new URL(`../assets/form/${imageName}`, import.meta.url).href
+}
+
+const updateFormResponse = (event: Event, label: string) => {
+  if (!formResponses.value[7]) {
+    formResponses.value[7] = {}
+  }
+  formResponses.value[7][label] = (event.target as HTMLInputElement).value
 }
 </script>
