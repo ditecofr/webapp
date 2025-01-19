@@ -116,7 +116,7 @@
 
       <div class="flex justify-between gap-20">
         <div class="flex h-full flex-1">
-          <img src="@/assets/example-image.png" alt="Rénovation" />
+          <img src="@/assets/major-renovation/example-image.png" alt="Rénovation" />
         </div>
 
         <div class="flex flex-1 flex-col justify-between gap-12">
@@ -179,7 +179,11 @@
 
       <div class="flex justify-between gap-8 mb-14">
         <div class="w-1/2">
-          <img class="w-full h-auto" src="@/assets/energy-audit.png" alt="Energie" />
+          <img
+            class="w-full h-auto"
+            src="@/assets/major-renovation/energy-audit.png"
+            alt="Energie"
+          />
         </div>
         <div class="flex w-1/2 flex-col justify-end pb-6">
           <h2 class="text-2xl font-bold mb-2">Diagnostic Énergétique Gratuit :</h2>
@@ -196,13 +200,21 @@
           <p>Maximisation de vos aides (jusqu'à 63 000 €).</p>
         </div>
         <div class="w-1/2">
-          <img class="w-full h-auto" src="@/assets/funding-management.png" alt="Financement" />
+          <img
+            class="w-full h-auto"
+            src="@/assets/major-renovation/funding-management.png"
+            alt="Financement"
+          />
         </div>
       </div>
 
       <div class="flex justify-between gap-8 mb-14">
         <div class="w-1/2">
-          <img class="w-full h-auto" src="@/assets/artisanal-work.png" alt="Travaux Artisanaux" />
+          <img
+            class="w-full h-auto"
+            src="@/assets/major-renovation/artisanal-work.png"
+            alt="Travaux Artisanaux"
+          />
         </div>
         <div class="flex w-1/2 flex-col justify-end pb-6">
           <h2 class="text-2xl font-bold mb-2">Travaux Réalisés par des Artisans Certifiés RGE :</h2>
