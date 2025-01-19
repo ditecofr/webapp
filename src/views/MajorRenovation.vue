@@ -4,13 +4,15 @@
       <Header />
 
       <!-- Hero -->
-      <div class="flex flex-col lg:flex-row lg:mt-10 items-center gap-6">
+      <div class="flex flex-col lg:flex-row lg:mt-16 items-center gap-8 min-h-[80vh]">
         <div class="w-full lg:w-[55%]">
-          <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold mb-6 lg:mb-8">
+          <h1
+            class="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 lg:mb-10 leading-tight bg-gradient-to-r from-[#56B476] to-[#2C7688] bg-clip-text text-transparent"
+          >
             Transformez votre logement avec le programme rénovation d'ampleur
           </h1>
-          <div class="flex flex-col mb-6 lg:mb-8 gap-4 lg:gap-6">
-            <p class="text-xl md:text-2xl">
+          <div class="flex flex-col mb-8 lg:mb-10 gap-6">
+            <p class="text-xl md:text-2xl font-medium">
               Passez à une Classe Énergétique Supérieure avec Jusqu'à 63 000 € d'Aides
             </p>
             <p class="w-full lg:w-3/4 text-base lg:text-lg leading-relaxed text-gray-600">
@@ -21,14 +23,17 @@
           </div>
 
           <button
-            class="w-full sm:w-auto rounded-full px-6 lg:px-8 py-3 lg:py-3.5 bg-[#56B476] text-white hover:bg-[#45a065]"
+            class="w-full sm:w-auto rounded-full px-8 py-4 bg-gradient-to-r from-[#56B476] to-[#2C7688] text-white hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           >
             Passer à l'action dès maintenant
           </button>
         </div>
 
-        <div class="relative w-full lg:w-[45%] mt-8 lg:mt-0">
-          <EligibilityForm />
+        <div class="relative w-full lg:w-[45%] mt-12 lg:mt-0">
+          <div
+            class="absolute -z-10 w-[600px] h-[600px] bg-gradient-to-r from-[#56B476]/20 to-[#2C7688]/20 rounded-full blur-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          ></div>
+          <EligibilityForm class="backdrop-blur-sm bg-white/80 rounded-3xl shadow-2xl p-8" />
         </div>
       </div>
     </div>
@@ -67,7 +72,9 @@
     <!-- Benefits -->
     <div id="benefits" class="container mx-auto px-8 pt-12 mt-12">
       <div class="flex flex-col items-center">
-        <h1 class="text-3xl font-bold text-center mb-14">
+        <h1
+          class="text-4xl font-bold text-center mb-14 bg-gradient-to-r from-[#56B476] to-[#2C7688] bg-clip-text text-transparent"
+        >
           Les bénéfices d'un saut de classe énergétique
         </h1>
 
@@ -112,7 +119,9 @@
 
     <!-- Examples -->
     <div class="container flex flex-col items-center mx-auto pt-12 mt-12 px-8">
-      <h1 class="text-3xl font-bold text-center mb-14">
+      <h1
+        class="text-4xl font-bold text-center mb-14 bg-gradient-to-r from-[#56B476] to-[#2C7688] bg-clip-text text-transparent"
+      >
         Exemples concrets de rénovations avec le programme
       </h1>
 
