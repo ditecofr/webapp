@@ -51,4 +51,6 @@
   </footer>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Phone, Mail, MapPin } from 'lucide-vue-next'
+</script>
