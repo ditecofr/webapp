@@ -128,7 +128,10 @@
         </p>
 
         <!-- Navigation buttons -->
-        <div class="flex flex-col-reverse sm:flex-row justify-between gap-4">
+        <div
+          class="flex flex-col-reverse sm:flex-row gap-4"
+          :class="currentStep > 1 ? 'justify-between' : 'justify-end'"
+        >
           <button
             v-if="currentStep > 1"
             @click="previousStep"

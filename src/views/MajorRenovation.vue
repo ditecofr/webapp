@@ -228,7 +228,7 @@
       <h1 class="mb-14 text-3xl text-center font-bold">Êtes-vous Éligible au Programme ?</h1>
 
       <div class="flex flex-col md:flex-row mb-14">
-        <div class="flex flex-col items-center p-8 bg-[#DAEADF]">
+        <div class="flex flex-col items-center p-8 md:my-8 md:w-[250px] bg-[#DAEADF]">
           <div class="bg-white rounded-full p-4 mb-4">
             <House class="text-[#56B476]" :size="56" />
           </div>
@@ -238,19 +238,19 @@
           </p>
         </div>
 
-        <div class="flex items-center p-8 md:p-12 bg-gray-100">
+        <div class="flex items-center p-8 md:p-12 bg-[#56B476]">
           <div class="flex flex-col items-center">
             <div class="bg-white rounded-full p-4 mb-4">
               <ChartSpline class="text-[#56B476]" :size="56" />
             </div>
-            <p class="text-center text-lg">
+            <p class="text-center text-lg text-white">
               Saut d'au moins 2 classes<br />
               énergétiques
             </p>
           </div>
         </div>
 
-        <div class="flex flex-col items-center p-8 bg-[#DAEADF]">
+        <div class="flex flex-col items-center p-8 md:my-8 md:w-[250px] bg-[#DAEADF]">
           <div class="bg-white rounded-full p-4 mb-4">
             <List class="text-[#56B476]" :size="56" />
           </div>
