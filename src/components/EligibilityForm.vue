@@ -260,11 +260,11 @@ const eligibilityForm: Record<number, EligibilityForm> = {
         value: 'under_23768',
       },
       {
-        label: 'De 23 768€ et 28 933€',
+        label: 'De 23 768€ à 28 933€',
         value: '23768_28933',
       },
       {
-        label: 'De 28 933€ et 40 404€',
+        label: 'De 28 933€ à 40 404€',
         value: '28933_40404',
       },
       {
