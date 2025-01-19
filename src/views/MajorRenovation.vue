@@ -4,10 +4,10 @@
       <Header />
 
       <!-- Hero -->
-      <div class="flex flex-col lg:flex-row lg:mt-16 items-center gap-8 min-h-[80vh]">
-        <div class="w-full lg:w-[55%]">
+      <div class="flex flex-col lg:flex-row lg:mt-16 items-center gap-8">
+        <div class="w-full lg:w-[50%]">
           <h1
-            class="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 lg:mb-10 leading-tight bg-gradient-to-r from-[#56B476] to-[#2C7688] bg-clip-text text-transparent"
+            class="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 lg:mb-10 leading-tight bg-gradient-to-r from-[#56B476] to-[#2C7688] bg-clip-text text-transparent"
           >
             Transformez votre logement avec le programme rénovation d'ampleur
           </h1>
@@ -16,20 +16,13 @@
               Passez à une Classe Énergétique Supérieure avec Jusqu'à 63 000 € d'Aides
             </p>
             <p class="w-full lg:w-3/4 text-base lg:text-lg leading-relaxed text-gray-600">
-              Avec Diteco et le Programme Rénovation d'Ampleur, améliorez la performance énergétique
-              de votre logement, réduisez vos factures, et bénéficiez d'un accompagnement
-              personnalisé grâce à Mon Accompagnateur Rénov.
+              Avec Diteco, améliorez la performance énergétique de votre logement et bénéficiez d'un
+              accompagnement personnalisé pour réduire vos factures.
             </p>
           </div>
-
-          <button
-            class="w-full sm:w-auto rounded-full px-8 py-4 bg-gradient-to-r from-[#56B476] to-[#2C7688] text-white hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-          >
-            Passer à l'action dès maintenant
-          </button>
         </div>
 
-        <div class="relative w-full lg:w-[45%] mt-12 lg:mt-0">
+        <div class="relative w-full lg:w-[45%] lg:mt-12">
           <div
             class="absolute -z-10 w-[600px] h-[600px] bg-gradient-to-r from-[#56B476]/20 to-[#2C7688]/20 rounded-full blur-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           ></div>
@@ -39,7 +32,7 @@
     </div>
 
     <div class="flex flex-col lg:flex-row mt-20 bg-[#DAEADF]">
-      <div class="w-full lg:w-[45%] rounded-none lg:rounded-tr-[250px] bg-[#56B476]">
+      <div class="w-full lg:w-[50%] rounded-none lg:rounded-tr-[250px] bg-[#56B476]">
         <div class="container flex h-full mx-auto px-8 md:px-20 py-12">
           <div class="self-end text-white">
             <h1 class="text-3xl font-bold">

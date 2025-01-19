@@ -10,8 +10,8 @@ const router = createRouter({
       component: () => import('../views/MajorRenovation.vue'),
     },
     {
-      path: '/renovation-ampleur',
-      name: 'renovation-ampleur',
+      path: '/renovation-dampleur',
+      name: 'renovation-dampleur',
       component: () => import('../views/MajorRenovation.vue'),
     },
     {

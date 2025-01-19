@@ -11,7 +11,11 @@
           <div
             :class="[
               'w-8 h-8 rounded-full flex items-center justify-center',
-              isStepCompleted(index + 1) ? 'bg-[#56B476] text-white' : 'bg-gray-200',
+              isStepCompleted(index + 1)
+                ? isOnRenovationDampleur
+                  ? 'bg-[#56B476] text-white'
+                  : 'bg-[#3E9AEA] text-white'
+                : 'bg-gray-200',
             ]"
           >
             <CheckIcon v-if="isStepCompleted(index + 1)" class="w-5 h-5" />
@@ -21,7 +25,13 @@
         <div
           v-if="index < 5"
           class="flex-1 h-[2px]"
-          :class="[isStepCompleted(index + 2) ? 'bg-[#56B476]' : 'bg-gray-200']"
+          :class="[
+            isStepCompleted(index + 2)
+              ? isOnRenovationDampleur
+                ? 'bg-[#56B476]'
+                : 'bg-[#3E9AEA]'
+              : 'bg-gray-200',
+          ]"
         ></div>
       </template>
     </div>
@@ -34,7 +44,7 @@
 
     <!-- Form content -->
     <div class="space-y-6">
-      <div v-if="!showSuccess">
+      <div v-if="!showSuccess" class="space-y-8">
         <div
           v-if="eligibilityForm[currentStep].options"
           :class="[
@@ -52,8 +62,15 @@
           <div
             v-for="option in eligibilityForm[currentStep].options"
             :key="option.value"
-            class="p-6 border-2 rounded-lg cursor-pointer hover:border-[#56B476]"
-            :class="{ 'border-2 border-[#56B476]': formResponses[currentStep] === option.value }"
+            class="p-6 border-2 rounded-lg cursor-pointer"
+            :class="{
+              'border-[#56B476] hover:border-[#56B476]':
+                isOnRenovationDampleur && formResponses[currentStep] === option.value,
+              'border-[#3E9AEA] hover:border-[#3E9AEA]':
+                !isOnRenovationDampleur && formResponses[currentStep] === option.value,
+              'hover:border-[#56B476]': isOnRenovationDampleur,
+              'hover:border-[#3E9AEA]': !isOnRenovationDampleur,
+            }"
             @click="selectOption(option.value)"
           >
             <div class="flex flex-col items-center">
@@ -66,7 +83,10 @@
               <component
                 v-else-if="option.icon"
                 :is="option.icon"
-                class="w-12 h-12 text-[#56B476] mb-4"
+                :class="[
+                  'w-12 h-12 mb-4',
+                  isOnRenovationDampleur ? 'text-[#56B476]' : 'text-[#3E9AEA]',
+                ]"
               />
               <span class="text-center w-full">{{ option.label }}</span>
             </div>
@@ -88,14 +108,27 @@
               v-model="(formResponses[7] as Record<string, string>)[input.label]"
               :type="input.type"
               :placeholder="input.placeholder"
-              class="p-3 border border-gray-300 rounded-lg focus:ring-[#56B476] focus:border-[#56B476]"
+              :class="[
+                'p-3 border border-gray-300 rounded-lg',
+                isOnRenovationDampleur
+                  ? 'focus:ring-[#56B476] focus:border-[#56B476]'
+                  : 'focus:ring-[#3E9AEA] focus:border-[#3E9AEA]',
+              ]"
               @input="(e) => updateFormResponse(e, input.label)"
             />
           </div>
         </div>
 
+        <p v-if="showError" class="text-red-500 text-sm text-center">
+          {{
+            currentStep === 7
+              ? 'Veuillez remplir tous les champs'
+              : 'Veuillez faire un choix pour continuer'
+          }}
+        </p>
+
         <!-- Navigation buttons -->
-        <div class="flex flex-col-reverse sm:flex-row justify-between gap-4 pt-8">
+        <div class="flex flex-col-reverse sm:flex-row justify-between gap-4">
           <button
             v-if="currentStep > 1"
             @click="previousStep"
@@ -104,17 +137,13 @@
             Précédent
           </button>
           <div class="flex flex-col items-end gap-2">
-            <p v-if="showError" class="text-red-500 text-sm">
-              {{
-                currentStep === 7
-                  ? 'Veuillez remplir tous les champs'
-                  : 'Veuillez faire un choix pour continuer'
-              }}
-            </p>
             <button
               @click="currentStep === 7 ? submitForm() : nextStep()"
               :disabled="currentStep === 7 && !isCurrentStepValid"
-              class="w-full sm:w-auto px-6 py-2 bg-[#56B476] text-white rounded-full hover:bg-opacity-90 sm:ml-auto disabled:opacity-50 disabled:cursor-not-allowed"
+              :class="[
+                'w-full sm:w-auto px-6 py-2 text-white rounded-full hover:opacity-90 sm:ml-auto disabled:opacity-50 disabled:cursor-not-allowed',
+                isOnRenovationDampleur ? 'bg-[#56B476]' : 'bg-[#3E9AEA]',
+              ]"
             >
               {{ currentStep === 7 ? 'Recevoir le calcul' : 'Continuer' }}
             </button>
@@ -123,7 +152,12 @@
       </div>
       <div v-else>
         <div class="text-center space-y-4">
-          <CheckIcon class="w-16 h-16 text-[#56B476] mx-auto" />
+          <CheckIcon
+            :class="[
+              'w-16 h-16 mx-auto',
+              isOnRenovationDampleur ? 'text-[#56B476]' : 'text-[#3E9AEA]',
+            ]"
+          />
           <h3 class="text-2xl font-bold">Félicitations !</h3>
           <p class="text-gray-600">
             Nous vous contacterons prochainement pour vous communiquer le montant de vos primes.
@@ -138,6 +172,14 @@
 import { ref, computed } from 'vue'
 import { CheckIcon } from 'lucide-vue-next'
 import type { LucideIcon } from 'lucide-vue-next'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const isOnRenovationDampleur = computed(
+  () =>
+    router.currentRoute.value.path === '/' ||
+    router.currentRoute.value.path === '/renovation-dampleur',
+)
 
 const currentStep = ref(1)
 const formResponses = ref<Record<number, string | Record<string, string>>>({
