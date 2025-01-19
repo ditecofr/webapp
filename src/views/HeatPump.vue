@@ -24,7 +24,7 @@
 
         <div class="relative w-full lg:w-[45%] lg:mt-12">
           <div
-            class="absolute -z-10 w-[600px] h-[600px] bg-gradient-to-r from-[#3E9AEA]/20 to-[#3487d0]/20 rounded-full blur-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            class="absolute -z-10 w-[100%] h-[600px] bg-gradient-to-r from-[#3E9AEA]/20 to-[#3487d0]/20 rounded-full blur-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           ></div>
           <EligibilityForm class="backdrop-blur-sm bg-white/80 rounded-3xl shadow-2xl p-8" />
         </div>
