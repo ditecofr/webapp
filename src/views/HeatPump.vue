@@ -67,7 +67,7 @@
           </div>
 
           <div class="flex h-full flex-1 flex-col items-center gap-4 lg:gap-10 text-center">
-            <Home class="text-[#3E9AEA]" :size="100" />
+            <Banknote class="text-[#3E9AEA]" :size="100" />
             <div>
               <h2 class="text-xl lg:text-2xl font-bold mb-4">Une Installation Complète pour 1 €</h2>
               <p>
@@ -284,5 +284,5 @@ import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import EligibilityForm from '@/components/EligibilityForm.vue'
 
-import { Award, EuroIcon, KeyRound, House, Wallet } from 'lucide-vue-next'
+import { Award, EuroIcon, KeyRound, House, Wallet, Banknote } from 'lucide-vue-next'
 </script>
