@@ -85,7 +85,7 @@
             </label>
             <input
               :id="input.label"
-              v-model="formResponses[7][input.label]"
+              v-model="(formResponses[7] as Record<string, string>)[input.label]"
               :type="input.type"
               :placeholder="input.placeholder"
               class="p-3 border border-gray-300 rounded-lg focus:ring-[#56B476] focus:border-[#56B476]"
@@ -140,7 +140,7 @@ import { CheckIcon } from 'lucide-vue-next'
 import type { LucideIcon } from 'lucide-vue-next'
 
 const currentStep = ref(1)
-const formResponses = ref<Record<number, Record<string, string>>>({
+const formResponses = ref<Record<number, string | Record<string, string>>>({
   7: {},
 })
 const showSuccess = ref(false)
@@ -321,7 +321,7 @@ const isCurrentStepValid = computed(() => {
 
   if (currentFormStep.inputs && currentStep.value === 7) {
     return currentFormStep.inputs.every((input) => {
-      const value = formResponses.value[7][input.label]
+      const value = (formResponses.value[7] as Record<string, string>)[input.label]
       return value !== undefined && value !== null && String(value).trim() !== ''
     })
   }
@@ -336,10 +336,7 @@ const nextStep = () => {
   }
 
   showError.value = false
-  if (
-    currentStep.value === 5 &&
-    formResponses.value[5]?.['no_share_income'] === 'no_share_income'
-  ) {
+  if (currentStep.value === 5 && formResponses.value[5] === 'no_share_income') {
     currentStep.value = 7
   } else if (currentStep.value < 7) {
     currentStep.value++
@@ -348,11 +345,8 @@ const nextStep = () => {
 
 const previousStep = () => {
   if (currentStep.value > 1) {
-    if (
-      currentStep.value === 7 &&
-      formResponses.value[5]?.['no_share_income'] === 'no_share_income'
-    ) {
-      currentStep.value = 5 // Go back to step 5 if step 6 was skipped
+    if (currentStep.value === 7 && formResponses.value[5] === 'no_share_income') {
+      currentStep.value = 5
     } else {
       currentStep.value--
     }
@@ -371,7 +365,7 @@ const submitForm = () => {
 }
 
 const selectOption = (value: string) => {
-  formResponses.value[currentStep.value] = { [value]: value }
+  formResponses.value[currentStep.value] = value
   nextStep()
 }
 
@@ -383,6 +377,8 @@ const updateFormResponse = (event: Event, label: string) => {
   if (!formResponses.value[7]) {
     formResponses.value[7] = {}
   }
-  formResponses.value[7][label] = (event.target as HTMLInputElement).value
+  ;(formResponses.value[7] as Record<string, string>)[label] = (
+    event.target as HTMLInputElement
+  ).value
 }
 </script>
