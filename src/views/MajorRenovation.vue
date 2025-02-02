@@ -71,61 +71,51 @@
         </div>
       </div>
 
-      <!-- Version mobile avec slider manuel -->
-      <div class="lg:hidden mb-20 relative">
-        <div class="overflow-hidden">
-          <div
-            class="flex transition-transform duration-300"
-            :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
-          >
-            <div class="flex-shrink-0 w-full">
-              <div class="flex flex-col items-center gap-4 text-center">
-                <div class="bg-repeat bg-primary-green/5 rounded-xl p-6">
-                  <TrendingDown class="text-primary-green size-16" />
-                </div>
-                <div>
-                  <h2 class="text-xl font-bold mb-2">Économies d'énergie</h2>
-                  <p class="text-sm">Économisez jusqu'à 70% sur vos factures</p>
-                </div>
+      <!-- Version mobile avec Swiper -->
+      <div class="lg:hidden relative">
+        <swiper
+          :modules="[Pagination, Autoplay]"
+          :slides-per-view="1"
+          :pagination="{ clickable: true }"
+          :autoplay="{ delay: 5000 }"
+          class="w-full"
+        >
+          <swiper-slide class="px-4">
+            <div class="flex flex-col items-center gap-4 text-center">
+              <div class="bg-repeat bg-primary-green/5 rounded-xl p-6">
+                <TrendingDown class="text-primary-green size-16" />
+              </div>
+              <div>
+                <h2 class="text-xl font-bold mb-2">Économies d'énergie</h2>
+                <p class="text-sm">Économisez jusqu'à 70% sur vos factures</p>
               </div>
             </div>
+          </swiper-slide>
 
-            <div class="flex-shrink-0 w-full">
-              <div class="flex flex-col items-center gap-4 text-center">
-                <div class="bg-repeat bg-primary-green/5 rounded-xl p-6">
-                  <Leaf class="text-primary-green size-16" />
-                </div>
-                <div>
-                  <h2 class="text-xl font-bold mb-2">Un confort amélioré</h2>
-                  <p class="text-sm">Température stable et meilleure isolation</p>
-                </div>
+          <swiper-slide class="px-4">
+            <div class="flex flex-col items-center gap-4 text-center">
+              <div class="bg-repeat bg-primary-green/5 rounded-xl p-6">
+                <Leaf class="text-primary-green size-16" />
+              </div>
+              <div>
+                <h2 class="text-xl font-bold mb-2">Un confort amélioré</h2>
+                <p class="text-sm">Température stable et meilleure isolation</p>
               </div>
             </div>
+          </swiper-slide>
 
-            <div class="flex-shrink-0 w-full">
-              <div class="flex flex-col items-center gap-4 text-center">
-                <div class="bg-repeat bg-primary-green/5 rounded-xl p-6">
-                  <ShieldCheck class="text-primary-green size-16" />
-                </div>
-                <div>
-                  <h2 class="text-xl font-bold mb-2">Conformité réglementaire</h2>
-                  <p class="text-sm">Anticipez les nouvelles réglementations</p>
-                </div>
+          <swiper-slide class="px-4">
+            <div class="flex flex-col items-center gap-4 text-center">
+              <div class="bg-repeat bg-primary-green/5 rounded-xl p-6">
+                <ShieldCheck class="text-primary-green size-16" />
+              </div>
+              <div>
+                <h2 class="text-xl font-bold mb-2">Conformité réglementaire</h2>
+                <p class="text-sm">Anticipez les nouvelles réglementations</p>
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Indicateurs de slide -->
-        <div class="flex justify-center gap-2 mt-4">
-          <button
-            v-for="index in 3"
-            :key="index"
-            @click="currentSlide = index - 1"
-            class="w-2 h-2 rounded-full transition-colors"
-            :class="currentSlide === index - 1 ? 'bg-primary-green' : 'bg-gray-300'"
-          ></button>
-        </div>
+          </swiper-slide>
+        </swiper>
       </div>
 
       <!-- Section des exemples avec fond contrasté -->
@@ -392,15 +382,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Pagination, Autoplay } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import EligibilityForm from '@/components/EligibilityForm.vue'
-
 import { ChartSpline, Leaf, List, House, ShieldCheck, TrendingDown } from 'lucide-vue-next'
-
-const currentSlide = ref(0)
 </script>
 
 <style>
@@ -409,5 +399,11 @@ const currentSlide = ref(0)
 }
 .swiper-pagination-bullet-active {
   background-color: #4caf50 !important;
+}
+
+/* Ajout de cette règle pour ajuster la position des bullets */
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 30px !important;
 }
 </style>
