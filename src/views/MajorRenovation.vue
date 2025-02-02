@@ -37,7 +37,7 @@
         <div class="flex flex-col lg:flex-row justify-between gap-10 lg:gap-20">
           <div class="flex h-full flex-1 flex-col items-center gap-4 lg:gap-6 text-center">
             <img
-              src="@/assets/illustrations/Savings.gif"
+              src="@/assets/illustrations/Savings.svg"
               class="size-[250px] scale-x-[-1]"
               alt="Illustration économies d'énergie"
             />
@@ -52,7 +52,7 @@
 
           <div class="flex h-full flex-1 flex-col items-center gap-4 lg:gap-6 text-center">
             <img
-              src="@/assets/illustrations/Comfort.gif"
+              src="@/assets/illustrations/Comfort.svg"
               class="size-[250px] scale-x-[-1]"
               alt="Illustration confort"
             />
@@ -66,7 +66,7 @@
 
           <div class="flex h-full flex-1 flex-col items-center gap-4 lg:gap-6 text-center">
             <img
-              src="@/assets/illustrations/Insurance.gif"
+              src="@/assets/illustrations/Insurance.svg"
               class="size-[250px]"
               alt="Illustration confort"
             />
