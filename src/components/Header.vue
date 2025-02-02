@@ -1,56 +1,46 @@
 <template>
   <header class="py-6">
     <nav class="flex items-center justify-between">
-      <img
-        v-if="isOnRenovationDampleur"
-        class="h-16 md:h-24"
-        src="@/assets/logo_renov.png"
-        alt="Diteco"
-      />
-      <img v-else class="h-16 md:h-24" src="@/assets/logo_pac.png" alt="Diteco" />
+      <h1 class="text-3xl lg:text-5xl font-bold text-white">Diteco</h1>
 
-      <!-- Menu burger pour mobile -->
+      <!-- Mobile burger menu -->
       <button @click="isMenuOpen = !isMenuOpen" class="md:hidden">
-        <Menu v-if="!isMenuOpen" class="text-gray-600" :size="24" />
-        <X v-else class="text-gray-600" :size="24" />
+        <Menu v-if="!isMenuOpen" class="text-white" :size="24" />
+        <X v-else class="text-white" :size="24" />
       </button>
 
-      <!-- Menu desktop -->
+      <!-- Desktop menu -->
       <div class="hidden md:flex items-center gap-24">
-        <a class="text-gray-600" href="#benefits">Bénéfices</a>
-        <a class="text-gray-600" href="#steps">Étapes</a>
-        <a class="text-gray-600" href="#eligibility">Éligibilité</a>
-        <a
-          class="flex rounded-full px-5 py-2.5 text-white"
-          :class="
-            isOnRenovationDampleur
-              ? 'bg-[#56B476] hover:bg-[#45a065]'
-              : 'bg-[#3E9AEA] hover:bg-[#3487d0]'
-          "
-          href="#"
-          >Diagnostic gratuit</a
-        >
+        <a class="text-white" href="#benefits">Bénéfices</a>
+        <a class="text-white" href="#steps">Comment ça marche ?</a>
+        <a class="text-white" href="#eligibility">Éligibilité</a>
+        <a class="flex rounded-full px-5 py-2.5 bg-white" href="#footer"> Contactez-nous </a>
       </div>
 
-      <!-- Menu mobile -->
+      <!-- Mobile menu -->
       <div
         v-show="isMenuOpen"
-        class="absolute top-24 left-0 right-0 bg-white shadow-lg md:hidden z-50"
+        class="fixed top-[88px] inset-x-0 bottom-0 md:hidden z-50 flex items-start pt-16 justify-center text-white overflow-y-auto"
+        :class="[isOnRenovationDampleur ? 'bg-primary-green' : 'bg-primary-blue']"
       >
-        <div class="flex flex-col p-4 gap-4">
-          <a class="text-gray-600 py-2" href="#benefits">Bénéfices</a>
-          <a class="text-gray-600 py-2" href="#steps">Étapes</a>
-          <a class="text-gray-600 py-2" href="#eligibility">Éligibilité</a>
+        <div class="flex flex-col items-center p-6 gap-8 text-center">
           <a
-            class="flex justify-center rounded-full px-5 py-2.5 text-white"
-            :class="
-              isOnRenovationDampleur
-                ? 'bg-[#56B476] hover:bg-[#45a065]'
-                : 'bg-[#3E9AEA] hover:bg-[#3487d0]'
-            "
-            href="#"
-            >Diagnostic gratuit</a
+            v-for="(item, index) in menuItems"
+            :key="index"
+            :href="item.href"
+            class="transition-colors duration-200 text-2xl font-medium py-2 hover:text-opacity-80"
+            @click="isMenuOpen = false"
           >
+            {{ item.label }}
+          </a>
+          <a
+            href="#footer"
+            class="flex justify-center rounded-full px-8 py-4 bg-white transition-colors duration-200 text-xl hover:bg-opacity-90"
+            :class="[isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue']"
+            @click="isMenuOpen = false"
+          >
+            Contactez-nous
+          </a>
         </div>
       </div>
     </nav>
@@ -58,11 +48,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { Menu, X } from 'lucide-vue-next'
 import { useRouter } from 'vue-router'
 
 const isMenuOpen = ref(false)
+
+// Watch for isMenuOpen changes to block/unblock scrolling
+watch(isMenuOpen, (newValue) => {
+  if (newValue) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+})
+
+const menuItems = [
+  { label: 'Bénéfices', href: '#benefits' },
+  { label: 'Comment ça marche ?', href: '#steps' },
+  { label: 'Éligibilité', href: '#eligibility' },
+]
 
 const router = useRouter()
 const isOnRenovationDampleur = computed(
