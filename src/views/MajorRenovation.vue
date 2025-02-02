@@ -5,8 +5,8 @@
         <Header />
 
         <!-- Hero -->
-        <div class="flex flex-col lg:flex-row lg:mt-16 items-center justify-between">
-          <div class="w-full lg:w-[60%] text-white text-center lg:text-left pt-8 lg:pt-0">
+        <div class="flex flex-col lg:flex-row lg:mt-16 items-center justify-between pt-8">
+          <div class="w-full lg:w-[60%] text-white text-center lg:text-left lg:pt-8">
             <h1 class="text-4xl lg:text-7xl font-bold font-jakarta mb-8 lg:mb-10">
               Donnez<br class="block lg:hidden" />
               une nouvelle vie à votre logement
@@ -19,7 +19,7 @@
             </div>
           </div>
 
-          <div id="eligibility" class="relative w-full lg:w-[40%] pt-8 lg:mt-12">
+          <div id="eligibility" class="relative w-full lg:w-[40%] pt-8 lg:pt-0">
             <EligibilityForm />
           </div>
         </div>
