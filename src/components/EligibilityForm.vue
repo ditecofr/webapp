@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-white rounded-lg border-2 border-gray-200 p-8">
-    <h2 v-if="!showSuccess" class="text-2xl font-bold text-center mb-8">
-      Calculer le montant de vos primes
+  <div class="bg-white rounded-xl p-8">
+    <h2 v-if="!showSuccess" class="text-2xl lg:text-3xl font-bold text-center mb-8">
+      Calculez le montant de vos primes
     </h2>
 
     <!-- Progress bar -->
@@ -13,8 +13,8 @@
               'w-8 h-8 rounded-full flex items-center justify-center',
               isStepCompleted(index + 1)
                 ? isOnRenovationDampleur
-                  ? 'bg-[#56B476] text-white'
-                  : 'bg-[#3E9AEA] text-white'
+                  ? 'bg-primary-green text-white'
+                  : 'bg-primary-blue text-white'
                 : 'bg-gray-200',
             ]"
           >
@@ -28,8 +28,8 @@
           :class="[
             isStepCompleted(index + 2)
               ? isOnRenovationDampleur
-                ? 'bg-[#56B476]'
-                : 'bg-[#3E9AEA]'
+                ? 'bg-primary-green'
+                : 'bg-primary-blue'
               : 'bg-gray-200',
           ]"
         ></div>
@@ -64,12 +64,12 @@
             :key="option.value"
             class="p-6 border-2 rounded-lg cursor-pointer"
             :class="{
-              'border-[#56B476] hover:border-[#56B476]':
+              'border-primary-green hover:border-primary-green':
                 isOnRenovationDampleur && formResponses[currentStep] === option.value,
-              'border-[#3E9AEA] hover:border-[#3E9AEA]':
+              'border-primary-blue hover:border-primary-blue':
                 !isOnRenovationDampleur && formResponses[currentStep] === option.value,
-              'hover:border-[#56B476]': isOnRenovationDampleur,
-              'hover:border-[#3E9AEA]': !isOnRenovationDampleur,
+              'hover:border-primary-green': isOnRenovationDampleur,
+              'hover:border-primary-blue': !isOnRenovationDampleur,
             }"
             @click="selectOption(option.value)"
           >
@@ -85,7 +85,7 @@
                 :is="option.icon"
                 :class="[
                   'w-12 h-12 mb-4',
-                  isOnRenovationDampleur ? 'text-[#56B476]' : 'text-[#3E9AEA]',
+                  isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue',
                 ]"
               />
               <span class="text-center w-full">{{ option.label }}</span>
@@ -111,8 +111,8 @@
               :class="[
                 'p-3 border border-gray-300 rounded-lg',
                 isOnRenovationDampleur
-                  ? 'focus:ring-[#56B476] focus:border-[#56B476]'
-                  : 'focus:ring-[#3E9AEA] focus:border-[#3E9AEA]',
+                  ? 'focus:ring-primary-green focus:border-primary-green'
+                  : 'focus:ring-primary-blue focus:border-primary-blue',
               ]"
               @input="(e) => updateFormResponse(e, input.label)"
             />
@@ -145,7 +145,7 @@
               :disabled="currentStep === 7 && !isCurrentStepValid"
               :class="[
                 'w-full sm:w-auto px-6 py-2 text-white rounded-full hover:opacity-90 sm:ml-auto disabled:opacity-50 disabled:cursor-not-allowed',
-                isOnRenovationDampleur ? 'bg-[#56B476]' : 'bg-[#3E9AEA]',
+                isOnRenovationDampleur ? 'bg-primary-green' : 'bg-primary-blue',
               ]"
             >
               {{ currentStep === 7 ? 'Recevoir le calcul' : 'Continuer' }}
@@ -158,7 +158,7 @@
           <CheckIcon
             :class="[
               'w-16 h-16 mx-auto',
-              isOnRenovationDampleur ? 'text-[#56B476]' : 'text-[#3E9AEA]',
+              isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue',
             ]"
           />
           <h3 class="text-2xl font-bold">Félicitations !</h3>
