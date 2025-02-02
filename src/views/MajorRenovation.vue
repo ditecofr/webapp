@@ -119,7 +119,7 @@
       </div>
 
       <!-- Section des exemples avec fond contrasté -->
-      <div class="bg-gray-50 rounded-2xl p-6 lg:p-12 mt-20">
+      <div class="bg-gray-50 rounded-2xl p-6 lg:p-12 mt-10 lg:mt-20">
         <img
           src="@/assets/major-renovation/example-image.png"
           alt="Rénovation"
@@ -401,7 +401,7 @@ import { ChartSpline, Leaf, List, House, ShieldCheck, TrendingDown } from 'lucid
   background-color: #4caf50 !important;
 }
 
-/* Ajout de cette règle pour ajuster la position des bullets */
+/** Swiper Pagination position */
 .swiper-pagination {
   position: relative !important;
   margin-top: 30px !important;
