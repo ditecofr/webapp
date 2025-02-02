@@ -1,32 +1,27 @@
 <template>
   <div>
-    <div class="container mx-auto px-8">
-      <Header />
+    <div class="bg-primary-blue">
+      <div class="container mx-auto px-8 pb-12">
+        <Header />
 
-      <!-- Hero -->
-      <div class="flex flex-col lg:flex-row lg:mt-16 items-center gap-8">
-        <div class="w-full lg:w-[55%]">
-          <h1
-            class="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 lg:mb-10 leading-tight bg-gradient-to-r from-[#3E9AEA] to-[#3487d0] bg-clip-text text-transparent"
-          >
-            Votre Pompe à Chaleur Air/Eau pour 1 € : Saisissez Votre Chance !
-          </h1>
-          <div class="flex flex-col mb-8 lg:mb-10 gap-6">
-            <p class="text-xl md:text-2xl font-medium">
-              Profitez des aides disponibles pour réduire vos factures d'énergie
-            </p>
-            <p class="w-full lg:w-3/4 text-base lg:text-lg leading-relaxed text-gray-600">
-              Avec Diteco, accédez à une installation clé en main pour seulement 1 € grâce aux
-              subventions et à notre expertise.
-            </p>
+        <!-- Hero -->
+        <div class="flex flex-col lg:flex-row lg:mt-16 items-center justify-between">
+          <div class="w-full lg:w-[60%] text-white text-center lg:text-left pt-8 lg:pt-0">
+            <h1 class="text-4xl lg:text-7xl font-bold font-jakarta mb-8 lg:mb-10 leading-[1.3]">
+              Votre Pompe à Chaleur Air/Eau pour 1 €
+            </h1>
+            <div class="flex flex-col mb-8 lg:mb-10 gap-6">
+              <p class="text-xl md:text-2xl leading-[1.8]">
+                Profitez des aides disponibles pour réduire vos factures d'énergie.
+                <br class="hidden lg:block" />
+                Avec Diteco, accédez à une installation clé en main pour seulement 1 €
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div class="relative w-full lg:w-[45%] lg:mt-12">
-          <div
-            class="absolute -z-10 w-[100%] h-[600px] bg-gradient-to-r from-[#3E9AEA]/20 to-[#3487d0]/20 rounded-full blur-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          ></div>
-          <EligibilityForm class="backdrop-blur-sm bg-white/80 rounded-3xl shadow-2xl p-8" />
+          <div class="relative w-full lg:w-[40%] lg:mt-12">
+            <EligibilityForm />
+          </div>
         </div>
       </div>
     </div>
@@ -34,15 +29,13 @@
     <!-- Benefits -->
     <div id="benefits" class="container mx-auto px-8 pt-12 mt-12">
       <div class="flex flex-col items-center">
-        <h1
-          class="text-4xl font-bold text-center mb-14 bg-gradient-to-r from-[#3E9AEA] to-[#3487d0] bg-clip-text text-transparent"
-        >
+        <h1 class="text-4xl font-bold text-center mb-14 text-primary-blue">
           Pourquoi Installer une Pompe à Chaleur Air/Eau avec Diteco ?
         </h1>
 
         <div class="flex flex-col lg:flex-row justify-between gap-10 lg:gap-20">
           <div class="flex h-full flex-1 flex-col items-center gap-4 lg:gap-10 text-center">
-            <EuroIcon class="text-[#3E9AEA]" :size="100" />
+            <EuroIcon class="text-primary-blue" :size="100" />
             <div>
               <h2 class="text-xl lg:text-2xl font-bold mb-4">Aides MaPrimeRénov'</h2>
               <p>
@@ -54,7 +47,7 @@
           </div>
 
           <div class="flex h-full flex-1 flex-col items-center gap-4 lg:gap-10 text-center">
-            <Award class="text-[#3E9AEA]" :size="100" />
+            <Award class="text-primary-blue" :size="100" />
             <div>
               <h2 class="text-xl lg:text-2xl font-bold mb-4">
                 Certificats d'Économies d'Énergie (CEE)
@@ -67,7 +60,7 @@
           </div>
 
           <div class="flex h-full flex-1 flex-col items-center gap-4 lg:gap-10 text-center">
-            <Banknote class="text-[#3E9AEA]" :size="100" />
+            <Banknote class="text-primary-blue" :size="100" />
             <div>
               <h2 class="text-xl lg:text-2xl font-bold mb-4">Une Installation Complète pour 1 €</h2>
               <p>
@@ -93,8 +86,8 @@
 
           <p class="mb-6">Il permet de :</p>
           <ul class="list-none space-y-2 mb-6">
-            <li class="text-[#3E9AEA]">• Chauffer votre logement.</li>
-            <li class="text-[#3E9AEA]">• Produire de l'eau chaude sanitaire.</li>
+            <li class="text-primary-blue">• Chauffer votre logement.</li>
+            <li class="text-primary-blue">• Produire de l'eau chaude sanitaire.</li>
           </ul>
 
           <p>
@@ -116,12 +109,14 @@
 
     <!-- Key Steps -->
     <div class="container mx-auto px-8 pt-12 mt-12">
-      <h2 class="text-4xl font-bold text-center text-[#3E9AEA] mb-14">Étapes clés avec Diteco</h2>
+      <h2 class="text-4xl font-bold text-center text-primary-blue mb-14">
+        Étapes clés avec Diteco
+      </h2>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Step 1 -->
         <div class="bg-white rounded-xl p-6 shadow-lg">
-          <div class="bg-[#3E9AEA] text-white text-center py-2 rounded-lg mb-4">
+          <div class="bg-primary-blue text-white text-center py-2 rounded-lg mb-4">
             Diagnostic gratuit et personnalisé
           </div>
           <p class="text-gray-600">
@@ -133,7 +128,7 @@
 
         <!-- Step 2 -->
         <div class="bg-white rounded-xl p-6 shadow-lg">
-          <div class="bg-[#3E9AEA] text-white text-center py-2 rounded-lg mb-4">
+          <div class="bg-primary-blue text-white text-center py-2 rounded-lg mb-4">
             Accompagnement complet pour le montage de votre dossier
           </div>
           <div class="space-y-4">
@@ -165,7 +160,7 @@
 
         <!-- Step 3 -->
         <div class="bg-white rounded-xl p-6 shadow-lg">
-          <div class="bg-[#3E9AEA] text-white text-center py-2 rounded-lg mb-4">
+          <div class="bg-primary-blue text-white text-center py-2 rounded-lg mb-4">
             Installation par des experts certifiés RGE partout en France
           </div>
           <div class="space-y-4">
@@ -191,9 +186,7 @@
 
     <!-- Examples -->
     <div class="container flex flex-col items-center mx-auto pt-12 mt-12 px-8">
-      <h1
-        class="text-4xl font-bold text-center mb-14 bg-gradient-to-r from-[#3E9AEA] to-[#3487d0] bg-clip-text text-transparent"
-      >
+      <h1 class="text-4xl font-bold text-center mb-14 text-primary-blue">
         Exemples de réalisations
       </h1>
 
@@ -237,9 +230,9 @@
       <h1 class="mb-14 text-3xl text-center font-bold">Êtes-vous Éligible au Programme ?</h1>
 
       <div class="flex flex-col md:flex-row mb-14">
-        <div class="flex flex-col items-center p-8 md:my-8 md:w-[250px] bg-[#EBF5FC]">
+        <div class="flex flex-col items-center p-8 md:my-8 md:w-[250px] bg-primary-blue-light">
           <div class="bg-white rounded-full p-4 mb-4">
-            <House class="text-[#3E9AEA]" :size="56" />
+            <House class="text-primary-blue" :size="56" />
           </div>
           <p class="text-center">
             Logement construit <br />
@@ -247,10 +240,10 @@
           </p>
         </div>
 
-        <div class="flex items-center p-8 md:p-12 bg-[#3E9AED]">
+        <div class="flex items-center p-8 md:p-12 bg-primary-blue">
           <div class="flex flex-col items-center">
             <div class="bg-white rounded-full p-4 mb-4">
-              <KeyRound class="text-[#3E9AEA]" :size="56" />
+              <KeyRound class="text-primary-blue" :size="56" />
             </div>
             <p class="text-center text-lg text-white">
               Vous êtes propriétaire <br />occupant ou bailleur
@@ -258,9 +251,9 @@
           </div>
         </div>
 
-        <div class="flex flex-col items-center p-8 md:my-8 md:w-[250px] bg-[#EBF5FC]">
+        <div class="flex flex-col items-center p-8 md:my-8 md:w-[250px] bg-primary-blue-light">
           <div class="bg-white rounded-full p-4 mb-4">
-            <Wallet class="text-[#3E9AEA]" :size="56" />
+            <Wallet class="text-primary-blue" :size="56" />
           </div>
           <p class="text-center">Revenus répondant <br />aux critères des <br />aides nationales</p>
         </div>
@@ -268,7 +261,7 @@
 
       <a
         href="#"
-        class="inline-block rounded-full px-8 py-3.5 bg-[#3E9AEA] text-white hover:bg-[#3487d0]"
+        class="inline-block rounded-full px-8 py-3.5 bg-primary-blue text-white hover:bg-primary-blue-hover"
       >
         Vérifiez gratuitement votre éligibilité
       </a>
