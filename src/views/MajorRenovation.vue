@@ -33,8 +33,8 @@
         la rénovation d'ampleur ?
       </h1>
 
-      <div class="flex flex-col lg:flex-row justify-between gap-10 lg:gap-20 mb-20">
-        <div class="flex h-full flex-1 flex-col items-center gap-4 lg:gap-6 text-center">
+      <div class="hidden lg:flex flex-row justify-between gap-20 mb-20">
+        <div class="flex h-full flex-1 flex-col items-center gap-6 text-center">
           <div class="bg-repeat bg-primary-green/5 rounded-xl p-8 mb-2">
             <TrendingDown class="text-primary-green size-24" />
           </div>
@@ -47,7 +47,7 @@
           </div>
         </div>
 
-        <div class="flex h-full flex-1 flex-col items-center gap-4 lg:gap-6 text-center">
+        <div class="flex h-full flex-1 flex-col items-center gap-6 text-center">
           <div class="bg-repeat bg-primary-green/5 rounded-xl p-8 mb-2">
             <Leaf class="text-primary-green size-24" />
           </div>
@@ -57,7 +57,7 @@
           </div>
         </div>
 
-        <div class="flex h-full flex-1 flex-col items-center gap-4 lg:gap-6 text-center">
+        <div class="flex h-full flex-1 flex-col items-center gap-6 text-center">
           <div class="bg-repeat bg-primary-green/5 rounded-xl p-8 mb-2">
             <ShieldCheck class="text-primary-green size-24" />
           </div>
@@ -68,6 +68,63 @@
               dès maintenant
             </p>
           </div>
+        </div>
+      </div>
+
+      <!-- Version mobile avec slider manuel -->
+      <div class="lg:hidden mb-20 relative">
+        <div class="overflow-hidden">
+          <div
+            class="flex transition-transform duration-300"
+            :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
+          >
+            <div class="flex-shrink-0 w-full">
+              <div class="flex flex-col items-center gap-4 text-center">
+                <div class="bg-repeat bg-primary-green/5 rounded-xl p-6">
+                  <TrendingDown class="text-primary-green size-16" />
+                </div>
+                <div>
+                  <h2 class="text-xl font-bold mb-2">Économies d'énergie</h2>
+                  <p class="text-sm">Économisez jusqu'à 70% sur vos factures</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-shrink-0 w-full">
+              <div class="flex flex-col items-center gap-4 text-center">
+                <div class="bg-repeat bg-primary-green/5 rounded-xl p-6">
+                  <Leaf class="text-primary-green size-16" />
+                </div>
+                <div>
+                  <h2 class="text-xl font-bold mb-2">Un confort amélioré</h2>
+                  <p class="text-sm">Température stable et meilleure isolation</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-shrink-0 w-full">
+              <div class="flex flex-col items-center gap-4 text-center">
+                <div class="bg-repeat bg-primary-green/5 rounded-xl p-6">
+                  <ShieldCheck class="text-primary-green size-16" />
+                </div>
+                <div>
+                  <h2 class="text-xl font-bold mb-2">Conformité réglementaire</h2>
+                  <p class="text-sm">Anticipez les nouvelles réglementations</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Indicateurs de slide -->
+        <div class="flex justify-center gap-2 mt-4">
+          <button
+            v-for="index in 3"
+            :key="index"
+            @click="currentSlide = index - 1"
+            class="w-2 h-2 rounded-full transition-colors"
+            :class="currentSlide === index - 1 ? 'bg-primary-green' : 'bg-gray-300'"
+          ></button>
         </div>
       </div>
 
@@ -335,28 +392,22 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import EligibilityForm from '@/components/EligibilityForm.vue'
 
 import { ChartSpline, Leaf, List, House, ShieldCheck, TrendingDown } from 'lucide-vue-next'
+
+const currentSlide = ref(0)
 </script>
 
-<style scoped>
-.hexagon {
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+<style>
+.swiper-pagination-bullet {
+  background-color: #ccc !important;
 }
-
-.octagon {
-  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-}
-
-.clip-path-polygon {
-  clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
-}
-
-.noise-bg {
-  background-image: radial-gradient(at 60% 60%, rgba(22, 163, 74, 0.03) 0%, transparent 50%),
-    radial-gradient(at 40% 40%, rgba(22, 163, 74, 0.03) 0%, transparent 50%);
+.swiper-pagination-bullet-active {
+  background-color: #4caf50 !important;
 }
 </style>
