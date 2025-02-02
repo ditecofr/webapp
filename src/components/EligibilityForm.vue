@@ -135,7 +135,7 @@
           <button
             v-if="currentStep > 1"
             @click="previousStep"
-            class="w-full sm:w-auto px-6 py-2 bg-[#1B2A3B] text-white rounded-full hover:bg-opacity-90"
+            class="w-full sm:w-auto px-6 py-2 bg-primary-dark text-white rounded-full hover:bg-opacity-90"
           >
             Précédent
           </button>
