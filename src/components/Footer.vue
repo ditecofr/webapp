@@ -1,5 +1,10 @@
 <template>
-  <footer :class="['md:pt-12 mt-12', isOnRenovationDampleur ? 'bg-[#DAEADF]' : 'bg-[#EBF5FC]']">
+  <footer
+    :class="[
+      'md:pt-12 mt-12',
+      isOnRenovationDampleur ? 'bg-primary-green-light' : 'bg-primary-blue-light',
+    ]"
+  >
     <div class="container mx-auto px-8 py-12">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <!-- Contact -->
@@ -8,14 +13,14 @@
             <h3 class="text-xl font-bold">Contact</h3>
             <p class="flex items-center gap-2">
               <Phone
-                :class="isOnRenovationDampleur ? 'text-[#56B476]' : 'text-[#3E9AEA]'"
+                :class="isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue'"
                 :size="20"
               />
-              <span>08 91 65 21 51</span>
+              <a href="tel:0184602689" class="hover:underline">01 84 60 26 89</a>
             </p>
             <p class="flex items-center gap-2">
               <Mail
-                :class="isOnRenovationDampleur ? 'text-[#56B476]' : 'text-[#3E9AEA]'"
+                :class="isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue'"
                 :size="20"
               />
               <span>contact@diteco.fr</span>
@@ -29,10 +34,21 @@
             <h3 class="text-xl font-bold">Adresse</h3>
             <p class="flex items-center gap-2">
               <MapPin
-                :class="isOnRenovationDampleur ? 'text-[#56B476]' : 'text-[#3E9AEA]'"
+                :class="isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue'"
                 :size="20"
               />
-              <span>30 rue Baudin<br />92400 Courbevoie<br />France</span>
+              <span>
+                30 rue Baudin<br />92400 Courbevoie<br />France
+                <br />
+                <a
+                  href="#"
+                  class="mt-3 hover:underline"
+                  :class="isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue'"
+                  @click.prevent="showAllLocations"
+                >
+                  Voir toutes nos agences →
+                </a>
+              </span>
             </p>
           </div>
         </div>
@@ -73,18 +89,108 @@
         </p>
       </div>
     </div>
+
+    <!-- Modal -->
+    <div
+      v-if="showModal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+    >
+      <div class="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold">Nos agences</h2>
+          <button @click="showModal = false" class="text-gray-500 hover:text-gray-700">
+            <XIcon :size="24" />
+          </button>
+        </div>
+
+        <div class="space-y-6">
+          <div
+            v-for="(location, index) in locations"
+            :key="index"
+            class="p-4 rounded-lg"
+            :class="[
+              index === 0
+                ? isOnRenovationDampleur
+                  ? 'bg-primary-green-light'
+                  : 'bg-primary-blue-light'
+                : 'bg-gray-50',
+            ]"
+          >
+            <div class="flex items-start gap-3">
+              <MapPin
+                :class="isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue'"
+                :size="20"
+              />
+              <div>
+                <h3 class="font-bold">{{ location.city }}</h3>
+                <p class="text-gray-600">{{ location.address }}</p>
+                <div v-if="index === 0" class="mt-1">
+                  <span
+                    class="text-sm font-medium"
+                    :class="isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue'"
+                    >Siège social</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </footer>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter, RouterLink } from 'vue-router'
-import { Phone, Mail, MapPin } from 'lucide-vue-next'
+import { Phone, Mail, MapPin, X as XIcon } from 'lucide-vue-next'
 
 const router = useRouter()
+const showModal = ref(false)
+
 const isOnRenovationDampleur = computed(
   () =>
     router.currentRoute.value.path === '/' ||
     router.currentRoute.value.path === '/renovation-dampleur',
 )
+
+const locations = [
+  {
+    city: 'Courbevoie',
+    address: '30 rue Baudin, 92400 Courbevoie',
+  },
+  {
+    city: 'Marseille',
+    address: 'Immeuble Énergie 24-26 Boulevard Gay Lussac, 13014 Marseille',
+  },
+  {
+    city: 'Bordeaux',
+    address: '81 Boulevard Pierre 1er, 33000 Bordeaux',
+  },
+  {
+    city: 'Rennes',
+    address: '18 Rue du Bourg Nouveau, 35000 Rennes',
+  },
+  {
+    city: 'Reims',
+    address: '19-11 Rue Gaston Boyer, 51100 Reims',
+  },
+]
+
+const showAllLocations = () => {
+  showModal.value = true
+}
 </script>
+
+<style scoped>
+/* Animation de la modale */
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+</style>
