@@ -15,7 +15,14 @@
       <div class="hidden md:flex items-center gap-24">
         <a class="text-white" href="#benefits">Bénéfices</a>
         <a class="text-white" href="#steps">Comment ça marche ?</a>
-        <a class="text-white" href="#eligibility">Éligibilité</a>
+        <RouterLink
+          v-if="isMobileView"
+          class="text-white"
+          :to="`/eligibility?formType=${isOnRenovationDampleur ? 'majorRenovation' : 'heatPump'}`"
+        >
+          Éligibilité
+        </RouterLink>
+        <a v-else class="text-white" href="#eligibility">Éligibilité</a>
         <a class="flex rounded-full px-5 py-2.5 bg-white" href="#footer"> Contactez-nous </a>
       </div>
 
@@ -55,6 +62,12 @@ import { Menu, X } from 'lucide-vue-next'
 import { useRouter } from 'vue-router'
 
 const isMenuOpen = ref(false)
+const isMobileView = ref(window.innerWidth < 768)
+
+// Watch for window resize
+window.addEventListener('resize', () => {
+  isMobileView.value = window.innerWidth < 768
+})
 
 // Watch for isMenuOpen changes to block/unblock scrolling
 watch(isMenuOpen, (newValue) => {
