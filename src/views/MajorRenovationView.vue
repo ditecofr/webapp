@@ -132,12 +132,6 @@
 
       <!-- Section des exemples avec fond contrasté -->
       <div class="bg-gray-50 rounded-2xl p-6 lg:p-12 mt-10 lg:mt-20">
-        <img
-          src="@/assets/major-renovation/example-image.png"
-          alt="Rénovation"
-          class="w-full lg:w-1/2 mx-auto object-cover rounded-2xl order-1 lg:order-2 mb-8 lg:mb-12"
-        />
-
         <h2 class="text-2xl font-bold text-center mb-8 lg:mb-12">
           Exemples de rénovations réussies
           <span class="block text-lg font-normal text-gray-600 mt-2">
@@ -145,160 +139,194 @@
           </span>
         </h2>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div class="bg-white rounded-lg p-6">
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center space-x-4">
-                <div class="flex items-center">
-                  <div class="h-10 px-4 bg-[#d31d1d] flex items-center">
-                    <span class="text-white font-bold text-lg">G</span>
+          <div class="relative h-full">
+            <div class="h-full flex flex-col">
+              <img
+                src="@/assets/major-renovation/example1.png"
+                alt="Exemple de rénovation 1"
+                class="w-full h-56 object-cover object-center rounded-t-lg"
+              />
+              <div class="bg-white rounded-lg p-6 flex-1">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                      <div class="h-10 px-4 bg-[#d31d1d] flex items-center">
+                        <span class="text-white font-bold text-lg">G</span>
+                      </div>
+                      <div
+                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#d31d1d] border-t-transparent border-b-transparent"
+                      ></div>
+                    </div>
+
+                    <div class="flex items-center">
+                      <div class="h-0.5 w-8 bg-primary-green relative">
+                        <div
+                          class="absolute right-0 -mt-1.5 w-3 h-3 border-t-2 border-r-2 border-primary-green transform rotate-45"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center">
+                      <div class="h-10 px-4 bg-[#fece00] flex items-center">
+                        <span class="text-black font-bold text-lg">D</span>
+                      </div>
+                      <div
+                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#fece00] border-t-transparent border-b-transparent"
+                      ></div>
+                    </div>
                   </div>
-                  <div
-                    class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#d31d1d] border-t-transparent border-b-transparent"
-                  ></div>
+                  <i class="fas fa-home text-primary-green text-2xl"></i>
                 </div>
 
-                <div class="flex items-center">
-                  <div class="h-0.5 w-8 bg-primary-green relative">
-                    <div
-                      class="absolute right-0 -mt-1.5 w-3 h-3 border-t-2 border-r-2 border-primary-green transform rotate-45"
-                    ></div>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-tools text-primary-green mt-1"></i>
+                    <p class="flex-1">
+                      <strong>Travaux :</strong> Isolation des murs et des combles, remplacement
+                      d'un chauffage électrique par une pompe à chaleur
+                    </p>
+                  </div>
+
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-euro-sign text-primary-green mt-1"></i>
+                    <p class="flex-1"><strong>Aides obtenues :</strong> 38 000 €</p>
+                  </div>
+
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-piggy-bank text-primary-green mt-1"></i>
+                    <p class="flex-1">
+                      <strong>Économies réalisées :</strong> -55 % sur les factures
+                    </p>
                   </div>
                 </div>
-
-                <div class="flex items-center">
-                  <div class="h-10 px-4 bg-[#fece00] flex items-center">
-                    <span class="text-black font-bold text-lg">D</span>
-                  </div>
-                  <div
-                    class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#fece00] border-t-transparent border-b-transparent"
-                  ></div>
-                </div>
-              </div>
-              <i class="fas fa-home text-primary-green text-2xl"></i>
-            </div>
-
-            <div class="space-y-4">
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-tools text-primary-green mt-1"></i>
-                <p class="flex-1">
-                  <strong>Travaux :</strong> Isolation des murs et des combles, remplacement d'un
-                  chauffage électrique par une pompe à chaleur
-                </p>
-              </div>
-
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-euro-sign text-primary-green mt-1"></i>
-                <p class="flex-1"><strong>Aides obtenues :</strong> 38 000 €</p>
-              </div>
-
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-piggy-bank text-primary-green mt-1"></i>
-                <p class="flex-1"><strong>Économies réalisées :</strong> -55 % sur les factures</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-lg p-6">
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center space-x-4">
-                <div class="flex items-center">
-                  <div class="h-10 px-4 bg-[#f48e1b] flex items-center">
-                    <span class="text-white font-bold text-lg">F</span>
-                  </div>
-                  <div
-                    class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#f48e1b] border-t-transparent border-b-transparent"
-                  ></div>
-                </div>
-
-                <div class="flex items-center">
-                  <div class="h-0.5 w-8 bg-primary-green relative">
-                    <div
-                      class="absolute right-0 -mt-1.5 w-3 h-3 border-t-2 border-r-2 border-primary-green transform rotate-45"
-                    ></div>
-                  </div>
-                </div>
-
-                <div class="flex items-center">
-                  <div class="h-10 px-4 bg-[#8dc63f] flex items-center">
-                    <span class="text-white font-bold text-lg">B</span>
-                  </div>
-                  <div
-                    class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#8dc63f] border-t-transparent border-b-transparent"
-                  ></div>
-                </div>
-              </div>
-              <i class="fas fa-home text-primary-green text-2xl"></i>
-            </div>
-
-            <div class="space-y-4">
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-tools text-primary-green mt-1"></i>
-                <p class="flex-1">
-                  <strong>Travaux :</strong> Isolation globale, ventilation performante,
-                  remplacement des fenêtres, chaudière
-                </p>
-              </div>
-
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-euro-sign text-primary-green mt-1"></i>
-                <p class="flex-1"><strong>Aides obtenues :</strong> 50 000 €</p>
-              </div>
-
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-piggy-bank text-primary-green mt-1"></i>
-                <p class="flex-1"><strong>Économies réalisées :</strong> -70 % sur les factures</p>
               </div>
             </div>
           </div>
 
-          <div class="bg-white rounded-lg p-6">
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center space-x-4">
-                <div class="flex items-center">
-                  <div class="h-10 px-4 bg-[#d31d1d] flex items-center">
-                    <span class="text-white font-bold text-lg">G</span>
+          <div class="relative h-full">
+            <div class="h-full flex flex-col">
+              <img
+                src="@/assets/major-renovation/example2.png"
+                alt="Exemple de rénovation 2"
+                class="w-full h-56 object-cover object-center rounded-t-lg"
+              />
+              <div class="bg-white rounded-lg p-6 flex-1">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                      <div class="h-10 px-4 bg-[#f48e1b] flex items-center">
+                        <span class="text-white font-bold text-lg">F</span>
+                      </div>
+                      <div
+                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#f48e1b] border-t-transparent border-b-transparent"
+                      ></div>
+                    </div>
+
+                    <div class="flex items-center">
+                      <div class="h-0.5 w-8 bg-primary-green relative">
+                        <div
+                          class="absolute right-0 -mt-1.5 w-3 h-3 border-t-2 border-r-2 border-primary-green transform rotate-45"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center">
+                      <div class="h-10 px-4 bg-[#8dc63f] flex items-center">
+                        <span class="text-white font-bold text-lg">B</span>
+                      </div>
+                      <div
+                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#8dc63f] border-t-transparent border-b-transparent"
+                      ></div>
+                    </div>
                   </div>
-                  <div
-                    class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#d31d1d] border-t-transparent border-b-transparent"
-                  ></div>
+                  <i class="fas fa-home text-primary-green text-2xl"></i>
                 </div>
 
-                <div class="flex items-center">
-                  <div class="h-0.5 w-8 bg-primary-green relative">
-                    <div
-                      class="absolute right-0 -mt-1.5 w-3 h-3 border-t-2 border-r-2 border-primary-green transform rotate-45"
-                    ></div>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-tools text-primary-green mt-1"></i>
+                    <p class="flex-1">
+                      <strong>Travaux :</strong> Isolation globale, ventilation performante,
+                      remplacement des fenêtres, chaudière
+                    </p>
                   </div>
-                </div>
 
-                <div class="flex items-center">
-                  <div class="h-10 px-4 bg-[#c1d82f] flex items-center">
-                    <span class="text-black font-bold text-lg">C</span>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-euro-sign text-primary-green mt-1"></i>
+                    <p class="flex-1"><strong>Aides obtenues :</strong> 50 000 €</p>
                   </div>
-                  <div
-                    class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#c1d82f] border-t-transparent border-b-transparent"
-                  ></div>
+
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-piggy-bank text-primary-green mt-1"></i>
+                    <p class="flex-1">
+                      <strong>Économies réalisées :</strong> -70 % sur les factures
+                    </p>
+                  </div>
                 </div>
               </div>
-              <i class="fas fa-home text-primary-green text-2xl"></i>
             </div>
+          </div>
 
-            <div class="space-y-4">
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-tools text-primary-green mt-1"></i>
-                <p class="flex-1">
-                  <strong>Travaux :</strong> Rénovation complète financée à 80 % grâce au programme
-                </p>
-              </div>
+          <div class="relative h-full">
+            <div class="h-full flex flex-col">
+              <img
+                src="@/assets/major-renovation/example3.png"
+                alt="Exemple de rénovation 3"
+                class="w-full h-56 object-cover object-center rounded-t-lg"
+              />
+              <div class="bg-white rounded-lg p-6 flex-1">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                      <div class="h-10 px-4 bg-[#d31d1d] flex items-center">
+                        <span class="text-white font-bold text-lg">G</span>
+                      </div>
+                      <div
+                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#d31d1d] border-t-transparent border-b-transparent"
+                      ></div>
+                    </div>
 
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-euro-sign text-primary-green mt-1"></i>
-                <p class="flex-1"><strong>Aides obtenues :</strong> 63 000 € cumulées</p>
-              </div>
+                    <div class="flex items-center">
+                      <div class="h-0.5 w-8 bg-primary-green relative">
+                        <div
+                          class="absolute right-0 -mt-1.5 w-3 h-3 border-t-2 border-r-2 border-primary-green transform rotate-45"
+                        ></div>
+                      </div>
+                    </div>
 
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-piggy-bank text-primary-green mt-1"></i>
-                <p class="flex-1"><strong>Économies réalisées :</strong> -65 % sur les factures</p>
+                    <div class="flex items-center">
+                      <div class="h-10 px-4 bg-[#c1d82f] flex items-center">
+                        <span class="text-black font-bold text-lg">C</span>
+                      </div>
+                      <div
+                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#c1d82f] border-t-transparent border-b-transparent"
+                      ></div>
+                    </div>
+                  </div>
+                  <i class="fas fa-home text-primary-green text-2xl"></i>
+                </div>
+
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-tools text-primary-green mt-1"></i>
+                    <p class="flex-1">
+                      <strong>Travaux :</strong> Rénovation complète financée à 80 % grâce au
+                      programme
+                    </p>
+                  </div>
+
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-euro-sign text-primary-green mt-1"></i>
+                    <p class="flex-1"><strong>Aides obtenues :</strong> 63 000 € cumulées</p>
+                  </div>
+
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-piggy-bank text-primary-green mt-1"></i>
+                    <p class="flex-1">
+                      <strong>Économies réalisées :</strong> -65 % sur les factures
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
