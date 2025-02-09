@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bg-primary-green">
-      <div class="container mx-auto px-8 pb-12">
+      <div class="container mx-auto px-8 sm:px-6 lg:px-8 pb-12">
         <Header />
 
         <!-- Hero -->
@@ -27,13 +27,13 @@
     </div>
 
     <!-- Benefits -->
-    <div id="benefits" class="container mx-auto px-8 py-12 lg:py-20">
+    <div id="benefits" class="container mx-auto px-8 sm:px-6 lg:px-8 py-12 lg:py-20">
       <h1 class="text-4xl text-center lg:text-5xl font-bold font-jakarta mb-10 lg:mb-14">
         Pourquoi opter pour<br class="hidden lg:block" />
         la rénovation d'ampleur ?
       </h1>
 
-      <div class="hidden lg:flex flex-row justify-between gap-20 mb-20">
+      <div class="hidden lg:flex flex-row justify-between gap-8 lg:gap-12 xl:gap-20 mb-20">
         <div class="flex h-full flex-1 flex-col items-center gap-6 text-center">
           <div class="bg-repeat bg-primary-green/5 rounded-xl p-8 mb-2">
             <TrendingDown class="text-primary-green size-24" />
@@ -260,7 +260,7 @@
 
     <div
       id="steps"
-      class="container flex flex-col items-center mx-auto py-12 lg:py-12 px-8 lg:px-32"
+      class="container flex flex-col items-center mx-auto py-12 lg:py-12 px-8 sm:px-6 lg:px-16"
     >
       <h1 class="text-4xl text-center lg:text-5xl font-bold mb-12 lg:mb-20">Comment ça marche ?</h1>
 
@@ -325,7 +325,7 @@
       </div>
     </div>
 
-    <div id="eligibility" class="py-12 lg:py-20 container mx-auto px-8">
+    <div id="eligibility" class="py-12 lg:py-20 container mx-auto px-8 sm:px-6 lg:px-8">
       <h1 class="mb-16 text-4xl lg:text-5xl text-center font-bold">Conditions d'éligibilité</h1>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
