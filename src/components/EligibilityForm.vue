@@ -5,28 +5,28 @@
     </h2>
 
     <!-- Progress bar -->
-    <div v-if="currentStep <= 6" class="flex items-center justify-between mb-8">
-      <template v-for="(step, index) in 6" :key="index">
+    <div v-if="currentStep <= 7" class="flex items-center justify-between mb-8">
+      <template v-for="index in 7" :key="index">
         <div class="relative">
           <div
             :class="[
               'w-8 h-8 rounded-full flex items-center justify-center',
-              isStepCompleted(index + 1)
+              isStepCompleted(index)
                 ? isOnRenovationDampleur
                   ? 'bg-primary-green text-white'
                   : 'bg-primary-blue text-white'
                 : 'bg-gray-200',
             ]"
           >
-            <CheckIcon v-if="isStepCompleted(index + 1)" class="w-5 h-5" />
-            <span v-else>{{ index + 1 }}</span>
+            <CheckIcon v-if="isStepCompleted(index)" class="w-5 h-5" />
+            <span v-else>{{ index }}</span>
           </div>
         </div>
         <div
-          v-if="index < 5"
+          v-if="index < 7"
           class="flex-1 h-[2px]"
           :class="[
-            isStepCompleted(index + 2)
+            isStepCompleted(index + 1)
               ? isOnRenovationDampleur
                 ? 'bg-primary-green'
                 : 'bg-primary-blue'
@@ -39,7 +39,7 @@
     <!-- Form eligibilityForm -->
     <div class="mb-8" v-if="!showSuccess">
       <h3 class="text-xl font-bold text-center mb-2">{{ currentStepTitle }}</h3>
-      <p v-if="currentStep <= 6" class="text-center text-gray-500">Étape {{ currentStep }} / 6</p>
+      <p class="text-center text-gray-500">Étape {{ currentStep }} / 8</p>
     </div>
 
     <!-- Form content -->
@@ -105,7 +105,7 @@
             </label>
             <input
               :id="input.label"
-              v-model="(formResponses[7] as Record<string, string>)[input.label]"
+              v-model="(formResponses[currentStep] as Record<string, string>)[input.label]"
               :type="input.type"
               :placeholder="input.placeholder"
               :class="[
@@ -121,7 +121,7 @@
 
         <p v-if="showError" class="text-red-500 text-sm text-center">
           {{
-            currentStep === 7
+            currentStep === 8
               ? 'Veuillez remplir tous les champs'
               : 'Veuillez faire un choix pour continuer'
           }}
@@ -141,14 +141,14 @@
           </button>
           <div class="flex flex-col items-end gap-2">
             <button
-              @click="currentStep === 7 ? submitForm() : nextStep()"
-              :disabled="currentStep === 7 && !isCurrentStepValid"
+              @click="currentStep === 8 ? submitForm() : nextStep()"
+              :disabled="currentStep === 8 && !isCurrentStepValid"
               :class="[
                 'w-full sm:w-auto px-6 py-2 text-white rounded-full hover:opacity-90 sm:ml-auto disabled:opacity-50 disabled:cursor-not-allowed',
                 isOnRenovationDampleur ? 'bg-primary-green' : 'bg-primary-blue',
               ]"
             >
-              {{ currentStep === 7 ? 'Recevoir le calcul' : 'Continuer' }}
+              {{ currentStep === 8 ? 'Recevoir le calcul' : 'Continuer' }}
             </button>
           </div>
         </div>
@@ -177,20 +177,6 @@ import { CheckIcon } from 'lucide-vue-next'
 import type { LucideIcon } from 'lucide-vue-next'
 import { useRouter } from 'vue-router'
 
-const router = useRouter()
-const isOnRenovationDampleur = computed(
-  () =>
-    router.currentRoute.value.path === '/' ||
-    router.currentRoute.value.path === '/renovation-dampleur',
-)
-
-const currentStep = ref(1)
-const formResponses = ref<Record<number, string | Record<string, string>>>({
-  7: {},
-})
-const showSuccess = ref(false)
-const showError = ref(false)
-
 interface EligibilityForm {
   title: string
   options?: {
@@ -207,166 +193,238 @@ interface EligibilityForm {
   }[]
 }
 
-const eligibilityForm: Record<number, EligibilityForm> = {
+const ILE_DE_FRANCE_THRESHOLDS = {
   1: {
-    title: 'Concernant votre logement, vous êtes ?',
-    options: [
-      {
-        label: 'Propriétaire',
-        image: 'owner.png',
-        value: 'owner',
-      },
-      {
-        label: 'Locataire',
-        image: 'renter.png',
-        value: 'renter',
-      },
-    ],
+    very_modest: 23768,
+    modest: 28933,
+    intermediate: 40404,
   },
   2: {
-    title: 'Dans quel type de bien vivez vous ?',
-    options: [
-      {
-        label: 'Maison',
-        image: 'house.png',
-        value: 'house',
-      },
-      {
-        label: 'Appartement',
-        image: 'apartment.png',
-        value: 'apartment',
-      },
-    ],
+    very_modest: 34884,
+    modest: 42463,
+    intermediate: 59394,
   },
   3: {
-    title: 'Quel est votre mode de chauffage ?',
-    options: [
-      {
-        label: 'Fioul',
-        image: 'fuel.png',
-        value: 'fuel',
-      },
-      {
-        label: 'Gaz',
-        image: 'gas.png',
-        value: 'gas',
-      },
-      {
-        label: 'Électrique',
-        image: 'electricity.png',
-        value: 'electricity',
-      },
-      {
-        label: 'Bois ou autre',
-        image: 'wood.png',
-        value: 'wood',
-      },
-    ],
+    very_modest: 41893,
+    modest: 51000,
+    intermediate: 71060,
   },
   4: {
-    title: 'Quel est le montant annuel de votre facture de chauffage ?',
-    options: [
-      {
-        label: 'Moins de 1250€',
-        value: 'moins_1250',
-      },
-      {
-        label: 'De 1250€ à 1500€',
-        value: '1250_1500',
-      },
-      {
-        label: 'De 1500 à 2000€',
-        value: '1500_2000',
-      },
-      {
-        label: 'Plus de 2000€',
-        value: 'more_2000',
-      },
-    ],
+    very_modest: 48914,
+    modest: 59549,
+    intermediate: 83637,
   },
   5: {
-    title: "Voulez-vous connaître votre montant d'aide ?",
-    options: [
-      {
-        label: 'Je souhaite avoir le montant de ma prime',
-        value: 'share_income',
-      },
-      {
-        label: 'Je ne souhaite pas confier mes revenus',
-        value: 'no_share_income',
-      },
-    ],
+    very_modest: 55961,
+    modest: 68123,
+    intermediate: 95758,
   },
-  6: {
-    title: `Quel est le revenu fiscal de référence indiqué sur votre avis d'imposition ${new Date().getFullYear() - 1} (revenus ${new Date().getFullYear() - 2})`,
-    options: [
-      {
-        label: "Jusqu'à 23 768€",
-        value: 'under_23768',
-      },
-      {
-        label: 'De 23 768€ à 28 933€',
-        value: '23768_28933',
-      },
-      {
-        label: 'De 28 933€ à 40 404€',
-        value: '28933_40404',
-      },
-      {
-        label: 'Plus de 40 405€',
-        value: 'over_40405',
-      },
-    ],
-  },
-  7: {
-    title: 'Vos informations de contact',
-    inputs: [
-      {
-        label: 'Nom complet',
-        type: 'text',
-        placeholder: 'Entrez votre nom complet',
-        value: '',
-      },
-      {
-        label: 'Adresse email',
-        type: 'email',
-        placeholder: 'exemple@email.com',
-        value: '',
-      },
-      {
-        label: 'Numéro de téléphone',
-        type: 'tel',
-        placeholder: '06 12 34 56 78',
-        value: '',
-      },
-      {
-        label: 'Code postal',
-        type: 'text',
-        placeholder: '75000',
-        value: '',
-      },
-      {
-        label: 'Nombre de personnes dans votre foyer (vous compris)',
-        type: 'number',
-        placeholder: '1',
-        value: '',
-      },
-    ],
+  additional: {
+    very_modest: 7038,
+    modest: 8568,
+    intermediate: 12122,
   },
 }
 
-const currentStepTitle = computed(() => eligibilityForm[currentStep.value].title)
+const OTHER_REGIONS_THRESHOLDS = {
+  1: {
+    very_modest: 17173,
+    modest: 22015,
+    intermediate: 30844,
+  },
+  2: {
+    very_modest: 25115,
+    modest: 32197,
+    intermediate: 45340,
+  },
+  3: {
+    very_modest: 30206,
+    modest: 38719,
+    intermediate: 54592,
+  },
+  4: {
+    very_modest: 35285,
+    modest: 45234,
+    intermediate: 63844,
+  },
+  5: {
+    very_modest: 40388,
+    modest: 51775,
+    intermediate: 73098,
+  },
+  additional: {
+    very_modest: 5094,
+    modest: 6525,
+    intermediate: 9254,
+  },
+}
+
+const router = useRouter()
+const currentStep = ref(1)
+const formResponses = ref<Record<number, string | Record<string, string>>>({
+  7: {},
+})
+const showSuccess = ref(false)
+const showError = ref(false)
+
+const isOnRenovationDampleur = computed(
+  () =>
+    router.currentRoute.value.path === '/' ||
+    router.currentRoute.value.path === '/renovation-dampleur',
+)
+
+const eligibilityForm = computed(
+  () =>
+    ({
+      1: {
+        title: 'Concernant votre logement, vous êtes ?',
+        options: [
+          {
+            label: 'Propriétaire',
+            image: 'owner.png',
+            value: 'owner',
+          },
+          {
+            label: 'Locataire',
+            image: 'renter.png',
+            value: 'renter',
+          },
+        ],
+      },
+      2: {
+        title: 'Dans quel type de bien vivez vous ?',
+        options: [
+          {
+            label: 'Maison',
+            image: 'house.png',
+            value: 'house',
+          },
+          {
+            label: 'Appartement',
+            image: 'apartment.png',
+            value: 'apartment',
+          },
+        ],
+      },
+      3: {
+        title: 'Quel est votre mode de chauffage ?',
+        options: [
+          {
+            label: 'Fioul',
+            image: 'fuel.png',
+            value: 'fuel',
+          },
+          {
+            label: 'Gaz',
+            image: 'gas.png',
+            value: 'gas',
+          },
+          {
+            label: 'Électrique',
+            image: 'electric.png',
+            value: 'electric',
+          },
+          {
+            label: 'Bois ou autre',
+            image: 'wood.png',
+            value: 'wood',
+          },
+        ],
+      },
+      4: {
+        title: 'Quel est le montant annuel de votre facture de chauffage ?',
+        options: [
+          {
+            label: 'Moins de 1250€',
+            value: 'moins_1250',
+          },
+          {
+            label: 'De 1250€ à 1500€',
+            value: '1250_1500',
+          },
+          {
+            label: 'De 1500 à 2000€',
+            value: '1500_2000',
+          },
+          {
+            label: 'Plus de 2000€',
+            value: 'more_2000',
+          },
+        ],
+      },
+      5: {
+        title: 'Information sur votre foyer',
+        inputs: [
+          {
+            label: 'Code postal',
+            type: 'text',
+            placeholder: '75000',
+            value: '',
+          },
+          {
+            label: 'Nombre de personnes dans votre foyer (vous compris)',
+            type: 'number',
+            placeholder: '1',
+            value: '',
+          },
+        ],
+      },
+      6: {
+        title: "Voulez-vous connaître votre montant d'aide ?",
+        options: [
+          {
+            label: 'Je souhaite avoir le montant de ma prime',
+            value: 'share_income',
+          },
+          {
+            label: 'Je ne souhaite pas confier mes revenus',
+            value: 'no_share_income',
+          },
+        ],
+      },
+      7: {
+        title: 'Quel est le revenu fiscal de référence...',
+        options: getIncomeOptions(),
+      },
+      8: {
+        title: 'Vos informations de contact',
+        inputs: [
+          {
+            label: 'Nom complet',
+            type: 'text',
+            placeholder: 'Entrez votre nom complet',
+            value: '',
+          },
+          {
+            label: 'Adresse email',
+            type: 'email',
+            placeholder: 'exemple@email.com',
+            value: '',
+          },
+          {
+            label: 'Numéro de téléphone',
+            type: 'tel',
+            placeholder: '06 12 34 56 78',
+            value: '',
+          },
+        ],
+      },
+    }) as Record<number, EligibilityForm>,
+)
+
+const currentStepTitle = computed(() => eligibilityForm.value[currentStep.value].title)
 
 const isCurrentStepValid = computed(() => {
-  const currentFormStep = eligibilityForm[currentStep.value]
+  const currentFormStep = eligibilityForm.value[currentStep.value]
 
   if (currentFormStep.options) {
     return formResponses.value[currentStep.value] !== undefined
   }
 
-  if (currentFormStep.inputs && currentStep.value === 7) {
+  if (currentFormStep.inputs) {
+    const responses = formResponses.value[currentStep.value] as Record<string, string>
     return currentFormStep.inputs.every((input) => {
-      const value = (formResponses.value[7] as Record<string, string>)[input.label]
+      const value = responses?.[input.label]
       return value !== undefined && value !== null && String(value).trim() !== ''
     })
   }
@@ -381,17 +439,23 @@ const nextStep = () => {
   }
 
   showError.value = false
-  if (currentStep.value === 5 && formResponses.value[5] === 'no_share_income') {
-    currentStep.value = 7
-  } else if (currentStep.value < 7) {
+
+  const nextStepNumber = currentStep.value + 1
+  if (eligibilityForm.value[nextStepNumber]?.inputs && !formResponses.value[nextStepNumber]) {
+    formResponses.value[nextStepNumber] = {}
+  }
+
+  if (currentStep.value === 6 && formResponses.value[6] === 'no_share_income') {
+    currentStep.value = 8
+  } else if (currentStep.value < 8) {
     currentStep.value++
   }
 }
 
 const previousStep = () => {
   if (currentStep.value > 1) {
-    if (currentStep.value === 7 && formResponses.value[5] === 'no_share_income') {
-      currentStep.value = 5
+    if (currentStep.value === 8 && formResponses.value[6] === 'no_share_income') {
+      currentStep.value = 6
     } else {
       currentStep.value--
     }
@@ -419,11 +483,79 @@ const getImageUrl = (imageName: string) => {
 }
 
 const updateFormResponse = (event: Event, label: string) => {
-  if (!formResponses.value[7]) {
-    formResponses.value[7] = {}
+  const currentStepNumber = currentStep.value
+  if (!formResponses.value[currentStepNumber]) {
+    formResponses.value[currentStepNumber] = {}
   }
-  ;(formResponses.value[7] as Record<string, string>)[label] = (
+  ;(formResponses.value[currentStepNumber] as Record<string, string>)[label] = (
     event.target as HTMLInputElement
   ).value
+}
+
+const getIncomeOptions = () => {
+  if (!formResponses.value[5] || typeof formResponses.value[5] !== 'object') {
+    return [
+      {
+        label: `Moins de ${OTHER_REGIONS_THRESHOLDS[1].very_modest}€`,
+        value: 'very_modest',
+      },
+      {
+        label: `Moins de ${OTHER_REGIONS_THRESHOLDS[1].modest}€`,
+        value: 'modest',
+      },
+      {
+        label: `Moins de ${OTHER_REGIONS_THRESHOLDS[1].intermediate}€`,
+        value: 'intermediate',
+      },
+      {
+        label: `Plus de ${OTHER_REGIONS_THRESHOLDS[1].intermediate}€`,
+        value: 'superior',
+      },
+    ]
+  }
+
+  const responses = formResponses.value[5] as Record<string, string>
+  const householdSize =
+    Number(responses['Nombre de personnes dans votre foyer (vous compris)']) || 1
+  const postalCode = responses['Code postal'] || ''
+
+  const THRESHOLDS = isIleDeFrance(postalCode) ? ILE_DE_FRANCE_THRESHOLDS : OTHER_REGIONS_THRESHOLDS
+
+  const size = Math.min(5, Math.max(1, householdSize))
+  let thresholds = THRESHOLDS[size as keyof typeof THRESHOLDS]
+
+  if (householdSize > 5) {
+    const additional = (householdSize - 5) * THRESHOLDS.additional.very_modest
+    thresholds = {
+      very_modest: THRESHOLDS[5].very_modest + additional,
+      modest: THRESHOLDS[5].modest + (householdSize - 5) * THRESHOLDS.additional.modest,
+      intermediate:
+        THRESHOLDS[5].intermediate + (householdSize - 5) * THRESHOLDS.additional.intermediate,
+    }
+  }
+
+  return [
+    {
+      label: `Moins de ${thresholds.very_modest}€`,
+      value: 'very_modest',
+    },
+    {
+      label: `Moins de ${thresholds.modest}€`,
+      value: 'modest',
+    },
+    {
+      label: `Moins de ${thresholds.intermediate}€`,
+      value: 'intermediate',
+    },
+    {
+      label: `Plus de ${thresholds.intermediate}€`,
+      value: 'superior',
+    },
+  ]
+}
+
+const isIleDeFrance = (postalCode: string) => {
+  const prefix = postalCode.substring(0, 2)
+  return ['75', '77', '78', '91', '92', '93', '94', '95'].includes(prefix)
 }
 </script>
