@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-primary-green">
+    <div class="hero-background">
       <div class="container mx-auto px-8 sm:px-6 lg:px-8 pb-12">
         <Header />
 
@@ -20,7 +20,19 @@
           </div>
 
           <div id="eligibility" class="relative w-full lg:w-[40%] pt-8 lg:pt-0">
-            <EligibilityForm />
+            <!-- Desktop form -->
+            <div class="hidden lg:block">
+              <EligibilityForm formType="renovation-dampleur" />
+            </div>
+            <!-- Mobile button -->
+            <div class="lg:hidden flex justify-center">
+              <RouterLink
+                to="/eligibility?formType=majorRenovation"
+                class="inline-block rounded-full px-8 py-3.5 bg-primary-green text-white hover:bg-primary-green/90 text-center"
+              >
+                Vérifier mon éligibilité
+              </RouterLink>
+            </div>
           </div>
         </div>
       </div>
@@ -430,6 +442,21 @@ import { ChartSpline, Leaf, List, House, ShieldCheck, TrendingDown } from 'lucid
 </script>
 
 <style>
+/* Hero background */
+.hero-background {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('@/assets/major-renovation/hero-bg-mobile.png');
+  @apply bg-cover bg-center bg-no-repeat relative;
+}
+
+@media (min-width: 1024px) {
+  .hero-background {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url('@/assets/major-renovation/hero-bg.png');
+  }
+}
+
+/* Swiper pagination */
 .swiper-pagination-bullet {
   background-color: #ccc !important;
 }

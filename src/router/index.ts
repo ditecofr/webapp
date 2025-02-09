@@ -7,17 +7,22 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/MajorRenovation.vue'),
+      component: () => import('../views/MajorRenovationView.vue'),
     },
     {
       path: '/renovation-dampleur',
       name: 'renovation-dampleur',
-      component: () => import('../views/MajorRenovation.vue'),
+      component: () => import('../views/MajorRenovationView.vue'),
     },
     {
       path: '/pac-ssc',
       name: 'pac-ssc',
-      component: () => import('../views/HeatPump.vue'),
+      component: () => import('../views/HeatPumpView.vue'),
+    },
+    {
+      path: '/eligibility',
+      name: 'eligibility',
+      component: () => import('../views/EligibilityView.vue'),
     },
   ],
 })

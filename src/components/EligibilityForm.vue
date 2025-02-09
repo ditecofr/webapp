@@ -183,7 +183,6 @@
 import { ref, computed } from 'vue'
 import { CheckIcon } from 'lucide-vue-next'
 import type { LucideIcon } from 'lucide-vue-next'
-import { useRouter } from 'vue-router'
 
 interface EligibilityForm {
   title: string
@@ -267,7 +266,10 @@ const OTHER_REGIONS_THRESHOLDS = {
   },
 }
 
-const router = useRouter()
+const props = defineProps<{
+  formType?: 'renovation-dampleur' | 'pac-ssc'
+}>()
+
 const currentStep = ref(1)
 const formResponses = ref<Record<number, string | Record<string, string>>>({
   7: {},
@@ -275,11 +277,15 @@ const formResponses = ref<Record<number, string | Record<string, string>>>({
 const showSuccess = ref(false)
 const showError = ref(false)
 
-const isOnRenovationDampleur = computed(
-  () =>
-    router.currentRoute.value.path === '/' ||
-    router.currentRoute.value.path === '/renovation-dampleur',
-)
+const isOnRenovationDampleur = computed(() => {
+  // Check props first
+  if (props.formType) {
+    return props.formType === 'renovation-dampleur'
+  }
+  // If no props, check URL query parameter
+  const urlParams = new URLSearchParams(window.location.search)
+  return urlParams.get('formType') === 'majorRenovation'
+})
 
 const eligibilityForm = computed(
   () =>
