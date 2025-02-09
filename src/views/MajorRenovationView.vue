@@ -38,6 +38,37 @@
       </div>
     </div>
 
+    <!-- Partners carousel -->
+    <div class="py-12 mt-12">
+      <div class="container mx-auto px-8 sm:px-6 lg:px-8">
+        <swiper
+          :modules="[Autoplay]"
+          :slides-per-view="3"
+          :slides-per-group="3"
+          :space-between="30"
+          :autoplay="{
+            delay: 0,
+            disableOnInteraction: false,
+          }"
+          :loop="true"
+          :speed="3000"
+          :breakpoints="{
+            640: { slidesPerView: 4, slidesPerGroup: 4 },
+            1024: { slidesPerView: 5, slidesPerGroup: 5 },
+          }"
+          class="w-full"
+        >
+          <swiper-slide
+            v-for="(logo, index) in logos"
+            :key="index"
+            class="flex items-center justify-center"
+          >
+            <img :src="logo" :alt="`Logo partenaire ${index + 1}`" class="h-16 object-contain" />
+          </swiper-slide>
+        </swiper>
+      </div>
+    </div>
+
     <!-- Benefits -->
     <div id="benefits" class="container mx-auto px-8 sm:px-6 lg:px-8 py-12 lg:py-20">
       <h1 class="text-4xl text-center lg:text-5xl font-bold font-jakarta mb-10 lg:mb-14">
@@ -83,7 +114,7 @@
         </div>
       </div>
 
-      <!-- Version mobile avec Swiper -->
+      <!-- Mobile version with Swiper -->
       <div class="lg:hidden relative">
         <swiper
           :modules="[Pagination, Autoplay]"
@@ -130,7 +161,7 @@
         </swiper>
       </div>
 
-      <!-- Section des exemples avec fond contrasté -->
+      <!-- Examples section with contrasting background -->
       <div class="bg-gray-50 rounded-2xl p-6 lg:p-12 mt-10 lg:mt-20">
         <h2 class="text-2xl font-bold text-center mb-8 lg:mb-12">
           Exemples de rénovations réussies
@@ -467,6 +498,19 @@ import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import EligibilityForm from '@/components/EligibilityForm.vue'
 import { ChartSpline, Leaf, List, House, ShieldCheck, TrendingDown } from 'lucide-vue-next'
+
+const baseLogos = [
+  new URL('@/assets/partners/logo-capeb.png', import.meta.url).href,
+  new URL('@/assets/partners/logo-domofinance.png', import.meta.url).href,
+  new URL('@/assets/partners/logo-ffb.png', import.meta.url).href,
+  new URL('@/assets/partners/logo-partenaire-edf.png', import.meta.url).href,
+  new URL('@/assets/partners/logo-qualipac.png', import.meta.url).href,
+  new URL('@/assets/partners/logo-qualisol.png', import.meta.url).href,
+  new URL('@/assets/partners/logo-synerciel.png', import.meta.url).href,
+]
+
+// Duplicate the list to create a seamless loop
+const logos = [...baseLogos, ...baseLogos]
 </script>
 
 <style>
