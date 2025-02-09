@@ -366,6 +366,7 @@ const eligibilityForm = computed(
             type: 'text',
             placeholder: '75000',
             value: '',
+            maxlength: 5,
           },
           {
             label: 'Nombre de personnes dans votre foyer (vous compris)',
@@ -431,7 +432,15 @@ const isCurrentStepValid = computed(() => {
     const responses = formResponses.value[currentStep.value] as Record<string, string>
     return currentFormStep.inputs.every((input) => {
       const value = responses?.[input.label]
-      return value !== undefined && value !== null && String(value).trim() !== ''
+      if (!value || String(value).trim() === '') return false
+
+      // Email validation
+      if (input.type === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        return emailRegex.test(value)
+      }
+
+      return true
     })
   }
 
@@ -495,9 +504,15 @@ const updateFormResponse = (event: Event, label: string) => {
   if (!formResponses.value[currentStepNumber]) {
     formResponses.value[currentStepNumber] = {}
   }
-  ;(formResponses.value[currentStepNumber] as Record<string, string>)[label] = (
-    event.target as HTMLInputElement
-  ).value
+
+  let value = (event.target as HTMLInputElement).value
+
+  // Validate postal code
+  if (label === 'Code postal') {
+    value = value.replace(/\D/g, '').slice(0, 5)
+  }
+
+  ;(formResponses.value[currentStepNumber] as Record<string, string>)[label] = value
 }
 
 const getIncomeOptions = () => {
