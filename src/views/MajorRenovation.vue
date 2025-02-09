@@ -136,9 +136,15 @@
           <div class="bg-white rounded-lg p-6">
             <div class="flex items-center justify-between mb-4">
               <div class="flex items-center space-x-4">
-                <div class="w-10 h-10 rounded-full bg-[#d31d1d] flex items-center justify-center">
-                  <span class="text-white font-bold text-lg">G</span>
+                <div class="flex items-center">
+                  <div class="h-10 px-4 bg-[#d31d1d] flex items-center">
+                    <span class="text-white font-bold text-lg">G</span>
+                  </div>
+                  <div
+                    class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#d31d1d] border-t-transparent border-b-transparent"
+                  ></div>
                 </div>
+
                 <div class="flex items-center">
                   <div class="h-0.5 w-8 bg-primary-green relative">
                     <div
@@ -146,8 +152,14 @@
                     ></div>
                   </div>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-[#fece00] flex items-center justify-center">
-                  <span class="text-black font-bold text-lg">D</span>
+
+                <div class="flex items-center">
+                  <div class="h-10 px-4 bg-[#fece00] flex items-center">
+                    <span class="text-black font-bold text-lg">D</span>
+                  </div>
+                  <div
+                    class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#fece00] border-t-transparent border-b-transparent"
+                  ></div>
                 </div>
               </div>
               <i class="fas fa-home text-primary-green text-2xl"></i>
@@ -177,9 +189,15 @@
           <div class="bg-white rounded-lg p-6">
             <div class="flex items-center justify-between mb-4">
               <div class="flex items-center space-x-4">
-                <div class="w-10 h-10 rounded-full bg-[#f48e1b] flex items-center justify-center">
-                  <span class="text-white font-bold text-lg">F</span>
+                <div class="flex items-center">
+                  <div class="h-10 px-4 bg-[#f48e1b] flex items-center">
+                    <span class="text-white font-bold text-lg">F</span>
+                  </div>
+                  <div
+                    class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#f48e1b] border-t-transparent border-b-transparent"
+                  ></div>
                 </div>
+
                 <div class="flex items-center">
                   <div class="h-0.5 w-8 bg-primary-green relative">
                     <div
@@ -187,8 +205,14 @@
                     ></div>
                   </div>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-[#8dc63f] flex items-center justify-center">
-                  <span class="text-white font-bold text-lg">B</span>
+
+                <div class="flex items-center">
+                  <div class="h-10 px-4 bg-[#8dc63f] flex items-center">
+                    <span class="text-white font-bold text-lg">B</span>
+                  </div>
+                  <div
+                    class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#8dc63f] border-t-transparent border-b-transparent"
+                  ></div>
                 </div>
               </div>
               <i class="fas fa-home text-primary-green text-2xl"></i>
@@ -218,9 +242,15 @@
           <div class="bg-white rounded-lg p-6">
             <div class="flex items-center justify-between mb-4">
               <div class="flex items-center space-x-4">
-                <div class="w-10 h-10 rounded-full bg-[#d31d1d] flex items-center justify-center">
-                  <span class="text-white font-bold text-lg">G</span>
+                <div class="flex items-center">
+                  <div class="h-10 px-4 bg-[#d31d1d] flex items-center">
+                    <span class="text-white font-bold text-lg">G</span>
+                  </div>
+                  <div
+                    class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#d31d1d] border-t-transparent border-b-transparent"
+                  ></div>
                 </div>
+
                 <div class="flex items-center">
                   <div class="h-0.5 w-8 bg-primary-green relative">
                     <div
@@ -228,8 +258,14 @@
                     ></div>
                   </div>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-[#c1d82f] flex items-center justify-center">
-                  <span class="text-black font-bold text-lg">C</span>
+
+                <div class="flex items-center">
+                  <div class="h-10 px-4 bg-[#c1d82f] flex items-center">
+                    <span class="text-black font-bold text-lg">C</span>
+                  </div>
+                  <div
+                    class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#c1d82f] border-t-transparent border-b-transparent"
+                  ></div>
                 </div>
               </div>
               <i class="fas fa-home text-primary-green text-2xl"></i>
