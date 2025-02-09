@@ -10,10 +10,10 @@
         <div
           class="h-full transition-all duration-300 ease-in-out rounded-full"
           :class="[isOnRenovationDampleur ? 'bg-primary-green' : 'bg-primary-blue']"
-          :style="{ width: `${(currentStep / 8) * 100}%` }"
+          :style="{ width: `${(currentStep / 9) * 100}%` }"
         ></div>
       </div>
-      <p class="mt-3 text-center text-gray-500">Étape {{ currentStep }} / 8</p>
+      <p class="mt-3 text-center text-gray-500">Étape {{ currentStep }} / 9</p>
     </div>
 
     <!-- Form eligibilityForm -->
@@ -100,7 +100,7 @@
 
         <p v-if="showError" class="text-red-500 text-sm text-center">
           {{
-            currentStep === 8
+            currentStep === 9
               ? 'Veuillez remplir tous les champs'
               : 'Veuillez faire un choix pour continuer'
           }}
@@ -120,14 +120,14 @@
           </button>
           <div class="flex flex-col items-end gap-2">
             <button
-              @click="currentStep === 8 ? submitForm() : nextStep()"
-              :disabled="currentStep === 8 && !isCurrentStepValid"
+              @click="currentStep === 9 ? submitForm() : nextStep()"
+              :disabled="currentStep === 9 && !isCurrentStepValid"
               :class="[
                 'w-full sm:w-auto px-6 py-2 text-white rounded-full hover:opacity-90 sm:ml-auto disabled:opacity-50 disabled:cursor-not-allowed',
                 isOnRenovationDampleur ? 'bg-primary-green' : 'bg-primary-blue',
               ]"
             >
-              {{ currentStep === 8 ? 'Recevoir le calcul' : 'Continuer' }}
+              {{ currentStep === 9 ? 'Recevoir le calcul' : 'Continuer' }}
             </button>
           </div>
         </div>
@@ -376,10 +376,23 @@ const eligibilityForm = computed(
         ],
       },
       7: {
-        title: 'Quel est le revenu fiscal de référence...',
-        options: getIncomeOptions(),
+        title: "Voulez-vous connaître votre montant d'aide ?",
+        options: [
+          {
+            label: 'Je souhaite avoir le montant de ma prime',
+            value: 'share_income',
+          },
+          {
+            label: 'Je ne souhaite pas confier mes revenus',
+            value: 'no_share_income',
+          },
+        ],
       },
       8: {
+        title: 'Quel est votre revenu fiscal de référence ?',
+        options: getIncomeOptions(),
+      },
+      9: {
         title: 'Vos informations de contact',
         inputs: [
           {
@@ -438,17 +451,17 @@ const nextStep = () => {
     formResponses.value[nextStepNumber] = {}
   }
 
-  if (currentStep.value === 6 && formResponses.value[6] === 'no_share_income') {
-    currentStep.value = 8
-  } else if (currentStep.value < 8) {
+  if (currentStep.value === 7 && formResponses.value[7] === 'no_share_income') {
+    currentStep.value = 9
+  } else if (currentStep.value < 9) {
     currentStep.value++
   }
 }
 
 const previousStep = () => {
   if (currentStep.value > 1) {
-    if (currentStep.value === 8 && formResponses.value[6] === 'no_share_income') {
-      currentStep.value = 6
+    if (currentStep.value === 9 && formResponses.value[7] === 'no_share_income') {
+      currentStep.value = 7
     } else {
       currentStep.value--
     }
