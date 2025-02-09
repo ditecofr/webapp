@@ -5,7 +5,7 @@
     </h2>
 
     <!-- Progress bar -->
-    <div v-if="currentStep <= 8" class="flex items-center justify-between mb-8">
+    <div v-if="!showSuccess" class="flex items-center justify-between mb-8">
       <template v-for="index in 8" :key="index">
         <div class="relative">
           <div
@@ -163,7 +163,15 @@
           />
           <h3 class="text-2xl font-bold">Félicitations !</h3>
           <p class="text-gray-600">
-            Nous vous contacterons prochainement pour vous communiquer le montant de vos primes.
+            Nous vous contacterons bientôt pour le montant de vos primes.<br />
+            N° de dossier :
+            <span
+              :class="[
+                'font-bold',
+                isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue',
+              ]"
+              >{{ fileNumber }}</span
+            >
           </p>
         </div>
       </div>
@@ -469,7 +477,16 @@ const isStepCompleted = (step: number) => {
   return false
 }
 
+const generateFileNumber = () => {
+  const timestamp = Date.now().toString()
+  const random = Math.random().toString(36).substring(2, 8).toUpperCase()
+  return `DOS-${timestamp.slice(-6)}${random}`
+}
+
+const fileNumber = ref('')
+
 const submitForm = () => {
+  fileNumber.value = generateFileNumber()
   showSuccess.value = true
 }
 
