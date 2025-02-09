@@ -1,7 +1,9 @@
 <template>
   <header class="py-6">
     <nav class="flex items-center justify-between">
-      <h1 class="text-3xl lg:text-5xl font-bold text-white">Diteco</h1>
+      <router-link to="/" class="flex items-center">
+        <img src="@/assets/logo.png" alt="Diteco" class="h-12 lg:h-16" />
+      </router-link>
 
       <!-- Mobile burger menu -->
       <button @click="isMenuOpen = !isMenuOpen" class="md:hidden">
