@@ -5,41 +5,20 @@
     </h2>
 
     <!-- Progress bar -->
-    <div v-if="!showSuccess" class="flex items-center justify-between mb-8">
-      <template v-for="index in 8" :key="index">
-        <div class="relative">
-          <div
-            :class="[
-              'w-8 h-8 rounded-full flex items-center justify-center',
-              isStepCompleted(index)
-                ? isOnRenovationDampleur
-                  ? 'bg-primary-green text-white'
-                  : 'bg-primary-blue text-white'
-                : 'bg-gray-200',
-            ]"
-          >
-            <CheckIcon v-if="isStepCompleted(index)" class="w-5 h-5" />
-            <span v-else>{{ index }}</span>
-          </div>
-        </div>
+    <div v-if="!showSuccess" class="mb-8">
+      <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
         <div
-          v-if="index < 8"
-          class="flex-1 h-[2px]"
-          :class="[
-            isStepCompleted(index + 1)
-              ? isOnRenovationDampleur
-                ? 'bg-primary-green'
-                : 'bg-primary-blue'
-              : 'bg-gray-200',
-          ]"
+          class="h-full transition-all duration-300 ease-in-out rounded-full"
+          :class="[isOnRenovationDampleur ? 'bg-primary-green' : 'bg-primary-blue']"
+          :style="{ width: `${(currentStep / 8) * 100}%` }"
         ></div>
-      </template>
+      </div>
+      <p class="mt-3 text-center text-gray-500">Étape {{ currentStep }} / 8</p>
     </div>
 
     <!-- Form eligibilityForm -->
     <div class="mb-8" v-if="!showSuccess">
       <h3 class="text-xl font-bold text-center mb-2">{{ currentStepTitle }}</h3>
-      <p class="text-center text-gray-500">Étape {{ currentStep }} / 8</p>
     </div>
 
     <!-- Form content -->
