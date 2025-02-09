@@ -5,8 +5,8 @@
     </h2>
 
     <!-- Progress bar -->
-    <div v-if="currentStep <= 7" class="flex items-center justify-between mb-8">
-      <template v-for="index in 7" :key="index">
+    <div v-if="currentStep <= 8" class="flex items-center justify-between mb-8">
+      <template v-for="index in 8" :key="index">
         <div class="relative">
           <div
             :class="[
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div
-          v-if="index < 7"
+          v-if="index < 8"
           class="flex-1 h-[2px]"
           :class="[
             isStepCompleted(index + 1)
@@ -48,14 +48,14 @@
         <div
           v-if="eligibilityForm[currentStep].options"
           :class="[
-            'grid gap-4',
+            'grid gap-4 mx-auto w-full',
             currentStep === 5
-              ? 'grid-cols-1'
+              ? 'grid-cols-2 sm:grid-cols-4 max-w-2xl'
               : currentStep === 4 || currentStep === 6
-                ? 'grid-cols-2'
+                ? 'grid-cols-1 sm:grid-cols-2 max-w-xl'
                 : (eligibilityForm[currentStep].options?.length ?? 0) > 2
-                  ? 'lg:grid-cols-4 sm:grid-cols-2'
-                  : 'grid-cols-2',
+                  ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 max-w-2xl'
+                  : 'grid-cols-1 sm:grid-cols-2 max-w-lg',
           ]"
         >
           <!-- Options -->
@@ -353,6 +353,19 @@ const eligibilityForm = computed(
         ],
       },
       5: {
+        title: 'Connaissez-vous la classe énergétique de votre DPE ?',
+        options: [
+          { label: 'A', value: 'A' },
+          { label: 'B', value: 'B' },
+          { label: 'C', value: 'C' },
+          { label: 'D', value: 'D' },
+          { label: 'E', value: 'E' },
+          { label: 'F', value: 'F' },
+          { label: 'G', value: 'G' },
+          { label: 'Non', value: 'unknown' },
+        ],
+      },
+      6: {
         title: 'Information sur votre foyer',
         inputs: [
           {
@@ -366,19 +379,6 @@ const eligibilityForm = computed(
             type: 'number',
             placeholder: '1',
             value: '',
-          },
-        ],
-      },
-      6: {
-        title: "Voulez-vous connaître votre montant d'aide ?",
-        options: [
-          {
-            label: 'Je souhaite avoir le montant de ma prime',
-            value: 'share_income',
-          },
-          {
-            label: 'Je ne souhaite pas confier mes revenus',
-            value: 'no_share_income',
           },
         ],
       },
