@@ -455,13 +455,6 @@ const previousStep = () => {
   }
 }
 
-const isStepCompleted = (step: number) => {
-  if (step > currentStep.value) return false
-  if (step < currentStep.value) return true
-
-  return false
-}
-
 const generateFileNumber = () => {
   const timestamp = Date.now().toString()
   const random = Math.random().toString(36).substring(2, 8).toUpperCase()
