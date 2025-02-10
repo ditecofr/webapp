@@ -483,6 +483,36 @@
       </div>
     </div>
 
+    <!-- Map section -->
+    <div class="container mx-auto px-8 sm:px-6 lg:px-8 pt-12 pb-8">
+      <h2 class="text-3xl font-bold text-center mb-8">
+        Nos agences<br class="block lg:hidden" />
+        en France
+      </h2>
+      <div class="flex flex-col items-center">
+        <img
+          src="@/assets/major-renovation/france-map.png"
+          alt="Carte des agences Diteco en France"
+          class="w-full max-w-3xl mb-8 -ml-6 lg:-ml-12"
+        />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600 max-w-2xl w-full">
+          <span
+            ><span class="font-bold text-primary-green">Courbevoie</span> - Hauts-de-Seine
+            (92)</span
+          >
+          <span
+            ><span class="font-bold text-primary-green">Marseille</span> - Bouches-du-Rhône
+            (13)</span
+          >
+          <span><span class="font-bold text-primary-green">Bordeaux</span> - Gironde (33)</span>
+          <span
+            ><span class="font-bold text-primary-green">Rennes</span> - Ille-et-Vilaine (35)</span
+          >
+          <span><span class="font-bold text-primary-green">Reims</span> - Marne (51)</span>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
     <Footer />
   </div>
