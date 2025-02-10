@@ -252,6 +252,7 @@ const props = defineProps<{
 const currentStep = ref(1)
 const formResponses = ref<Record<number, string | Record<string, string>>>({
   7: {},
+  9: {},
 })
 const showSuccess = ref(false)
 const showError = ref(false)
