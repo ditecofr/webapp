@@ -333,12 +333,12 @@ const eligibilityForm = computed(
             value: 'moins_1250',
           },
           {
-            label: 'De 1250€ à 1500€',
-            value: '1250_1500',
+            label: 'Moins de 1500€',
+            value: 'moins_1500',
           },
           {
-            label: 'De 1500 à 2000€',
-            value: '1500_2000',
+            label: 'Moins de 2000€',
+            value: 'moins_2000',
           },
           {
             label: 'Plus de 2000€',
@@ -486,9 +486,84 @@ const generateFileNumber = () => {
 
 const fileNumber = ref('')
 
-const submitForm = () => {
+const getFormattedIncomeLevel = (level: string) => {
+  const mapping = {
+    very_modest: 'Très modestes',
+    modest: 'Modestes',
+    intermediate: 'Revenus intermédiaires',
+    superior: 'Revenus supérieurs',
+  }
+  return mapping[level as keyof typeof mapping] || level
+}
+
+const formatDate = (date: Date) => {
+  const day = date.getDate().toString().padStart(2, '0')
+  const month = (date.getMonth() + 1).toString().padStart(2, '0')
+  const year = date.getFullYear()
+  return `${day}/${month}/${year}`
+}
+
+const getFormattedFormType = (type: string) => {
+  const mapping = {
+    'renovation-dampleur': "Rénovation d'ampleur",
+    'pac-ssc': 'PAC SSC',
+  }
+  return mapping[type as keyof typeof mapping] || type
+}
+
+const submitForm = async () => {
   fileNumber.value = generateFileNumber()
-  showSuccess.value = true
+
+  // Format phone number
+  const phoneNumber = (formResponses.value[9] as Record<string, string>)['Numéro de téléphone']
+  const formattedPhone = phoneNumber.startsWith('0')
+    ? '+33' + phoneNumber.substring(1)
+    : phoneNumber
+
+  // Récupérer les labels depuis eligibilityForm
+  const getLabel = (step: number, value: string) => {
+    return eligibilityForm.value[step].options?.find((opt) => opt.value === value)?.label || value
+  }
+
+  const formData = {
+    fileNumber: fileNumber.value,
+    ownershipStatus: getLabel(1, formResponses.value[1] as string),
+    propertyType: getLabel(2, formResponses.value[2] as string),
+    heatingType: getLabel(3, formResponses.value[3] as string),
+    heatingBill: getLabel(4, formResponses.value[4] as string),
+    energyClass: formResponses.value[5],
+    postalCode: (formResponses.value[6] as Record<string, string>)['Code postal'],
+    householdSize: (formResponses.value[6] as Record<string, string>)[
+      'Nombre de personnes dans votre foyer (vous compris)'
+    ],
+    shareIncome: getLabel(7, formResponses.value[7] as string),
+    incomeLevel: getFormattedIncomeLevel(formResponses.value[8] as string),
+    fullName: (formResponses.value[9] as Record<string, string>)['Nom complet'],
+    email: (formResponses.value[9] as Record<string, string>)['Adresse email'],
+    phone: formattedPhone,
+    formType: getFormattedFormType(
+      isOnRenovationDampleur.value ? 'renovation-dampleur' : 'pac-ssc',
+    ),
+    submissionDate: formatDate(new Date()),
+  }
+
+  try {
+    const response = await fetch('https://hook.eu2.make.com/cey16iu32untwxy20anji2mt2idlesha', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+
+    if (!response.ok) {
+      throw new Error("Erreur lors de l'envoi du formulaire")
+    }
+
+    showSuccess.value = true
+  } catch (error) {
+    console.error('Erreur:', error)
+  }
 }
 
 const selectOption = (value: string) => {
