@@ -516,7 +516,7 @@ const updateFormResponse = (event: Event, label: string) => {
 }
 
 const getIncomeOptions = () => {
-  if (!formResponses.value[5] || typeof formResponses.value[5] !== 'object') {
+  if (!formResponses.value[6] || typeof formResponses.value[6] !== 'object') {
     return [
       {
         label: `Moins de ${OTHER_REGIONS_THRESHOLDS[1].very_modest}€`,
@@ -537,7 +537,7 @@ const getIncomeOptions = () => {
     ]
   }
 
-  const responses = formResponses.value[5] as Record<string, string>
+  const responses = formResponses.value[6] as Record<string, string>
   const householdSize =
     Number(responses['Nombre de personnes dans votre foyer (vous compris)']) || 1
   const postalCode = responses['Code postal'] || ''
