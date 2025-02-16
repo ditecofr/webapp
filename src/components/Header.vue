@@ -2,7 +2,7 @@
   <header class="py-6">
     <nav class="flex items-center justify-between">
       <router-link to="/" class="flex items-center">
-        <img src="@/assets/logo.png" alt="Diteco" class="h-12 lg:h-16" />
+        <img :src="logoSrc" alt="Diteco" class="h-12 lg:h-16" />
       </router-link>
 
       <!-- Mobile burger menu -->
@@ -25,7 +25,7 @@
         <div class="py-6 px-8">
           <div class="flex items-center justify-between">
             <router-link to="/" class="flex items-center">
-              <img src="@/assets/logo.png" alt="Diteco" class="h-12" />
+              <img :src="logoSrc" alt="Diteco" class="h-12" />
             </router-link>
             <button @click="isMenuOpen = !isMenuOpen">
               <X
@@ -86,6 +86,12 @@ const isOnRenovationDampleur = computed(
     router.currentRoute.value.path === '/' ||
     router.currentRoute.value.path === '/renovation-dampleur',
 )
+
+const logoSrc = computed(() => {
+  return isOnRenovationDampleur.value
+    ? new URL('@/assets/major-renovation/logo.png', import.meta.url).href
+    : new URL('@/assets/heat-pump/logo.png', import.meta.url).href
+})
 
 const menuItems = [
   { label: 'Bénéfices', href: '#benefits' },
