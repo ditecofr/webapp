@@ -133,25 +133,35 @@
         </div>
       </div>
       <div v-else>
-        <div class="text-center space-y-4">
+        <div class="space-y-4">
           <CheckIcon
             :class="[
               'w-16 h-16 mx-auto',
               isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue',
             ]"
           />
-          <h3 class="text-2xl font-bold">Félicitations !</h3>
-          <p class="text-gray-600">
-            Nous vous contacterons bientôt pour le montant de vos primes.<br />
-            N° de dossier :
-            <span
-              :class="[
-                'font-bold',
-                isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue',
-              ]"
-              >{{ fileNumber }}</span
-            >
-          </p>
+          <h3 class="text-2xl font-bold">
+            Félicitations, Votre Demande a Bien Été Enregistrée ! 🎉
+          </h3>
+          <div class="text-gray-600 space-y-2">
+            <p>Merci d'avoir complété votre inscription ! ✅</p>
+            <p>
+              Un conseiller Diteco vous contactera sous 24 à 48 heures pour vérifier votre
+              éligibilité et répondre à vos questions.
+            </p>
+            <p class="mt-4">
+              📌 Notez bien votre numéro de dossier :
+              <span
+                :class="[
+                  'font-bold',
+                  isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue',
+                ]"
+                >{{ fileNumber }}</span
+              >
+            </p>
+            <p>👉 Restez joignable, notre conseiller vous appellera bientôt !</p>
+            <p class="mt-4">À très vite,<br />L'équipe Diteco 🚀</p>
+          </div>
         </div>
       </div>
     </div>
