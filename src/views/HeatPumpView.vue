@@ -443,7 +443,7 @@ import { Award, EuroIcon, KeyRound, House, Wallet, Banknote } from 'lucide-vue-n
   background-color: #ccc !important;
 }
 .swiper-pagination-bullet-active {
-  background-color: #4caf50 !important;
+  background-color: #2e86de !important;
 }
 
 /** Swiper Pagination position */
