@@ -43,6 +43,7 @@
             :key="option.value"
             class="p-6 border-2 rounded-lg cursor-pointer"
             :class="{
+              'flex items-center justify-center': currentStep === 5 && option.value !== 'unknown',
               'border-primary-green hover:border-primary-green':
                 isOnRenovationDampleur && formResponses[currentStep] === option.value,
               'border-primary-blue hover:border-primary-blue':
@@ -52,23 +53,39 @@
             }"
             @click="selectOption(option.value)"
           >
-            <div class="flex flex-col items-center">
-              <img
-                v-if="option.image"
-                :src="getImageUrl(option.image)"
-                :alt="option.label"
-                class="w-12 h-12 mb-4 object-contain"
-              />
-              <component
-                v-else-if="option.icon"
-                :is="option.icon"
-                :class="[
-                  'w-12 h-12 mb-4',
-                  isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue',
-                ]"
-              />
-              <span class="text-center w-full">{{ option.label }}</span>
-            </div>
+            <template v-if="currentStep === 5 && option.value !== 'unknown'">
+              <div class="h-10 px-4 flex items-center" :style="{ backgroundColor: option.color }">
+                <span class="font-bold text-lg" :style="{ color: option.textColor }">{{
+                  option.label
+                }}</span>
+              </div>
+              <div
+                class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-t-transparent border-b-transparent"
+                :style="{ borderLeftColor: option.color }"
+              ></div>
+            </template>
+            <template v-else>
+              <div
+                class="flex flex-col items-center"
+                :class="currentStep === 5 && option.value === 'unknown' && 'pt-2'"
+              >
+                <img
+                  v-if="option.image"
+                  :src="getImageUrl(option.image)"
+                  :alt="option.label"
+                  class="w-12 h-12 mb-4 object-contain"
+                />
+                <component
+                  v-else-if="option.icon"
+                  :is="option.icon"
+                  :class="[
+                    'w-12 h-12 mb-4',
+                    isOnRenovationDampleur ? 'text-primary-green' : 'text-primary-blue',
+                  ]"
+                />
+                <span class="text-center w-full">{{ option.label }}</span>
+              </div>
+            </template>
           </div>
         </div>
 
@@ -180,6 +197,8 @@ interface EligibilityForm {
     icon?: LucideIcon
     image?: string
     value: string
+    color?: string
+    textColor?: string
   }[]
   inputs?: {
     label: string
@@ -359,14 +378,52 @@ const eligibilityForm = computed(
       5: {
         title: 'Connaissez-vous la classe énergétique de votre DPE ?',
         options: [
-          { label: 'A', value: 'A' },
-          { label: 'B', value: 'B' },
-          { label: 'C', value: 'C' },
-          { label: 'D', value: 'D' },
-          { label: 'E', value: 'E' },
-          { label: 'F', value: 'F' },
-          { label: 'G', value: 'G' },
-          { label: 'Non', value: 'unknown' },
+          {
+            label: 'A',
+            value: 'A',
+            color: '#3d8b46',
+            textColor: 'white',
+          },
+          {
+            label: 'B',
+            value: 'B',
+            color: '#77b145',
+            textColor: 'white',
+          },
+          {
+            label: 'C',
+            value: 'C',
+            color: '#cbd544',
+            textColor: 'black',
+          },
+          {
+            label: 'D',
+            value: 'D',
+            color: '#fcee4f',
+            textColor: 'black',
+          },
+          {
+            label: 'E',
+            value: 'E',
+            color: '#f1be41',
+            textColor: 'white',
+          },
+          {
+            label: 'F',
+            value: 'F',
+            color: '#e07d2e',
+            textColor: 'white',
+          },
+          {
+            label: 'G',
+            value: 'G',
+            color: '#d02e25',
+            textColor: 'white',
+          },
+          {
+            label: 'Non',
+            value: 'unknown',
+          },
         ],
       },
       6: {

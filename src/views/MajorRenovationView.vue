@@ -181,11 +181,11 @@
                 <div class="flex items-center justify-between mb-4">
                   <div class="flex items-center space-x-4">
                     <div class="flex items-center">
-                      <div class="h-10 px-4 bg-[#d31d1d] flex items-center">
+                      <div class="h-10 px-4 bg-[#d02e25] flex items-center">
                         <span class="text-white font-bold text-lg">G</span>
                       </div>
                       <div
-                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#d31d1d] border-t-transparent border-b-transparent"
+                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#d02e25] border-t-transparent border-b-transparent"
                       ></div>
                     </div>
 
@@ -198,11 +198,11 @@
                     </div>
 
                     <div class="flex items-center">
-                      <div class="h-10 px-4 bg-[#fece00] flex items-center">
+                      <div class="h-10 px-4 bg-[#fcee4f] flex items-center">
                         <span class="text-black font-bold text-lg">D</span>
                       </div>
                       <div
-                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#fece00] border-t-transparent border-b-transparent"
+                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#fcee4f] border-t-transparent border-b-transparent"
                       ></div>
                     </div>
                   </div>
@@ -245,11 +245,11 @@
                 <div class="flex items-center justify-between mb-4">
                   <div class="flex items-center space-x-4">
                     <div class="flex items-center">
-                      <div class="h-10 px-4 bg-[#f48e1b] flex items-center">
+                      <div class="h-10 px-4 bg-[#e07d2e] flex items-center">
                         <span class="text-white font-bold text-lg">F</span>
                       </div>
                       <div
-                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#f48e1b] border-t-transparent border-b-transparent"
+                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#e07d2e] border-t-transparent border-b-transparent"
                       ></div>
                     </div>
 
@@ -262,11 +262,11 @@
                     </div>
 
                     <div class="flex items-center">
-                      <div class="h-10 px-4 bg-[#8dc63f] flex items-center">
+                      <div class="h-10 px-4 bg-[#77b145] flex items-center">
                         <span class="text-white font-bold text-lg">B</span>
                       </div>
                       <div
-                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#8dc63f] border-t-transparent border-b-transparent"
+                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#77b145] border-t-transparent border-b-transparent"
                       ></div>
                     </div>
                   </div>
@@ -309,11 +309,11 @@
                 <div class="flex items-center justify-between mb-4">
                   <div class="flex items-center space-x-4">
                     <div class="flex items-center">
-                      <div class="h-10 px-4 bg-[#d31d1d] flex items-center">
+                      <div class="h-10 px-4 bg-[#d02e25] flex items-center">
                         <span class="text-white font-bold text-lg">G</span>
                       </div>
                       <div
-                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#d31d1d] border-t-transparent border-b-transparent"
+                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#d02e25] border-t-transparent border-b-transparent"
                       ></div>
                     </div>
 
@@ -326,11 +326,11 @@
                     </div>
 
                     <div class="flex items-center">
-                      <div class="h-10 px-4 bg-[#c1d82f] flex items-center">
+                      <div class="h-10 px-4 bg-[#cbd544] flex items-center">
                         <span class="text-black font-bold text-lg">C</span>
                       </div>
                       <div
-                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#c1d82f] border-t-transparent border-b-transparent"
+                        class="w-0 h-0 border-t-[20px] border-b-[20px] border-l-[20px] border-l-[#cbd544] border-t-transparent border-b-transparent"
                       ></div>
                     </div>
                   </div>
