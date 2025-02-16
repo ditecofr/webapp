@@ -427,14 +427,14 @@ import { Award, EuroIcon, KeyRound, House, Wallet, Banknote } from 'lucide-vue-n
 /* Hero background */
 .hero-background {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6)),
-    url('@/assets/major-renovation/hero-bg-mobile.png');
+    url('@/assets/heat-pump/hero-bg-mobile.png');
   @apply bg-cover bg-center bg-no-repeat relative;
 }
 
 @media (min-width: 1024px) {
   .hero-background {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6)),
-      url('@/assets/major-renovation/hero-bg.png');
+      url('@/assets/heat-pump/hero-bg.png');
   }
 }
 
