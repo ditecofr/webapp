@@ -430,33 +430,7 @@
     </div>
 
     <!-- Map section -->
-    <div class="container mx-auto px-8 sm:px-6 lg:px-8 pt-12 pb-8">
-      <h2 class="text-3xl font-bold text-center mb-8">
-        Nos agences<br class="block lg:hidden" />
-        en France
-      </h2>
-      <div class="flex flex-col items-center">
-        <img
-          src="@/assets/heat-pump/france-map.png"
-          alt="Carte des agences Diteco en France"
-          class="w-full max-w-3xl mb-8 -ml-6 lg:-ml-12"
-        />
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600 max-w-2xl w-full">
-          <span
-            ><span class="font-bold text-primary-blue">Courbevoie</span> - Hauts-de-Seine (92)</span
-          >
-          <span
-            ><span class="font-bold text-primary-blue">Marseille</span> - Bouches-du-Rhône
-            (13)</span
-          >
-          <span><span class="font-bold text-primary-blue">Bordeaux</span> - Gironde (33)</span>
-          <span
-            ><span class="font-bold text-primary-blue">Rennes</span> - Ille-et-Vilaine (35)</span
-          >
-          <span><span class="font-bold text-primary-blue">Reims</span> - Marne (51)</span>
-        </div>
-      </div>
-    </div>
+    <Map />
 
     <!-- Footer -->
     <Footer />
@@ -470,6 +444,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 
 import Header from '@/components/Header.vue'
+import Map from '@/components/Map.vue'
 import Footer from '@/components/Footer.vue'
 import EligibilityForm from '@/components/EligibilityForm.vue'
 import { Award, EuroIcon, KeyRound, House, Wallet, Banknote } from 'lucide-vue-next'

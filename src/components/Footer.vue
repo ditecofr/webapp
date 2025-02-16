@@ -160,20 +160,44 @@ const locations = [
     address: '30 rue Baudin, 92400 Courbevoie',
   },
   {
-    city: 'Marseille',
-    address: 'Immeuble Énergie 24-26 Boulevard Gay Lussac, 13014 Marseille',
-  },
-  {
     city: 'Bordeaux',
-    address: '81 Boulevard Pierre 1er, 33000 Bordeaux',
+    address: '81, Boulevard Pierre 1er, 33110 Bordeaux',
   },
   {
-    city: 'Rennes',
-    address: '18 Rue du Bourg Nouveau, 35000 Rennes',
+    city: 'Dijon',
+    address: '8, Rue Marcel Dassault, 21000 Dijon',
+  },
+  {
+    city: 'Douai',
+    address: '148, Rue de Bellain, 59500 Douai',
+  },
+  {
+    city: 'Nantes',
+    address: '6, Rue du Danemark, 44470 Nantes',
   },
   {
     city: 'Reims',
-    address: '19-11 Rue Gaston Boyer, 51100 Reims',
+    address: '9-11, Rue Gaston Boyer, 51100 Reims',
+  },
+  {
+    city: 'Rennes',
+    address: '18, Rue du Bourg Nouveau, 35000 Rennes',
+  },
+  {
+    city: 'Rouen',
+    address: '72, Rue de Lessard, 76100 Rouen',
+  },
+  {
+    city: 'Saint Priest',
+    address: '117, Allée des Parcs, 69800 Saint Priest',
+  },
+  {
+    city: 'Toulouse',
+    address: '3, Rue Dieudonné Costes, 31700 Toulouse',
+  },
+  {
+    city: 'Tours',
+    address: '31 Bât D, 45 bât G rue de la Milletière, 37100 Tours',
   },
 ]
 
