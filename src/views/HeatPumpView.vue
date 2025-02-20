@@ -391,12 +391,12 @@
       </div>
 
       <div class="flex justify-center">
-        <a
-          href="#eligibility"
+        <RouterLink
+          to="/eligibility?formType=majorRenovation"
           class="inline-block rounded-full px-8 py-3.5 bg-primary-dark text-white hover:bg-primary-dark/80"
         >
           Vérifiez gratuitement votre éligibilité
-        </a>
+        </RouterLink>
       </div>
     </div>
 
