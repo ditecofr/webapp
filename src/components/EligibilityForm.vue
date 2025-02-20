@@ -189,6 +189,7 @@
 import { ref, computed } from 'vue'
 import { CheckIcon } from 'lucide-vue-next'
 import type { LucideIcon } from 'lucide-vue-next'
+import { useRoute } from 'vue-router'
 
 interface EligibilityForm {
   title: string
@@ -283,7 +284,6 @@ const formResponses = ref<Record<number, string | Record<string, string>>>({
   7: {},
   9: {},
 })
-const showSuccess = ref(false)
 const showError = ref(false)
 
 const isOnRenovationDampleur = computed(() => {
@@ -551,8 +551,6 @@ const generateFileNumber = () => {
   return `DOS-${timestamp.slice(-6)}${random}`
 }
 
-const fileNumber = ref('')
-
 const getFormattedIncomeLevel = (level: string) => {
   const mapping = {
     very_modest: 'Très modestes',
@@ -578,43 +576,46 @@ const getFormattedFormType = (type: string) => {
   return mapping[type as keyof typeof mapping] || type
 }
 
+const route = useRoute()
+
+const showSuccess = ref(route.query.step === 'final')
+const fileNumber = ref((route.query.fileNumber as string) || generateFileNumber())
+
 const submitForm = async () => {
-  fileNumber.value = generateFileNumber()
-
-  // Format phone number
-  const phoneNumber = (formResponses.value[9] as Record<string, string>)['Numéro de téléphone']
-  const formattedPhone = phoneNumber.startsWith('0')
-    ? '+33' + phoneNumber.substring(1)
-    : phoneNumber
-
-  // Récupérer les labels depuis eligibilityForm
-  const getLabel = (step: number, value: string) => {
-    return eligibilityForm.value[step].options?.find((opt) => opt.value === value)?.label || value
-  }
-
-  const formData = {
-    fileNumber: fileNumber.value,
-    ownershipStatus: getLabel(1, formResponses.value[1] as string),
-    propertyType: getLabel(2, formResponses.value[2] as string),
-    heatingType: getLabel(3, formResponses.value[3] as string),
-    heatingBill: getLabel(4, formResponses.value[4] as string),
-    energyClass: formResponses.value[5],
-    postalCode: (formResponses.value[6] as Record<string, string>)['Code postal'],
-    householdSize: (formResponses.value[6] as Record<string, string>)[
-      'Nombre de personnes dans votre foyer (vous compris)'
-    ],
-    shareIncome: getLabel(7, formResponses.value[7] as string),
-    incomeLevel: getFormattedIncomeLevel(formResponses.value[8] as string),
-    fullName: (formResponses.value[9] as Record<string, string>)['Nom complet'],
-    email: (formResponses.value[9] as Record<string, string>)['Adresse email'],
-    phone: formattedPhone,
-    formType: getFormattedFormType(
-      isOnRenovationDampleur.value ? 'renovation-dampleur' : 'pac-ssc',
-    ),
-    submissionDate: formatDate(new Date()),
-  }
-
   try {
+    // Format phone number
+    const phoneNumber = (formResponses.value[9] as Record<string, string>)['Numéro de téléphone']
+    const formattedPhone = phoneNumber.startsWith('0')
+      ? '+33' + phoneNumber.substring(1)
+      : phoneNumber
+
+    // Get label from eligibilityForm
+    const getLabel = (step: number, value: string) => {
+      return eligibilityForm.value[step].options?.find((opt) => opt.value === value)?.label || value
+    }
+
+    const formData = {
+      fileNumber: fileNumber.value,
+      ownershipStatus: getLabel(1, formResponses.value[1] as string),
+      propertyType: getLabel(2, formResponses.value[2] as string),
+      heatingType: getLabel(3, formResponses.value[3] as string),
+      heatingBill: getLabel(4, formResponses.value[4] as string),
+      energyClass: formResponses.value[5],
+      postalCode: (formResponses.value[6] as Record<string, string>)['Code postal'],
+      householdSize: (formResponses.value[6] as Record<string, string>)[
+        'Nombre de personnes dans votre foyer (vous compris)'
+      ],
+      shareIncome: getLabel(7, formResponses.value[7] as string),
+      incomeLevel: getFormattedIncomeLevel(formResponses.value[8] as string),
+      fullName: (formResponses.value[9] as Record<string, string>)['Nom complet'],
+      email: (formResponses.value[9] as Record<string, string>)['Adresse email'],
+      phone: formattedPhone,
+      formType: getFormattedFormType(
+        isOnRenovationDampleur.value ? 'renovation-dampleur' : 'pac-ssc',
+      ),
+      submissionDate: formatDate(new Date()),
+    }
+
     const response = await fetch('https://hook.eu2.make.com/cey16iu32untwxy20anji2mt2idlesha', {
       method: 'POST',
       headers: {
@@ -627,7 +628,8 @@ const submitForm = async () => {
       throw new Error("Erreur lors de l'envoi du formulaire")
     }
 
-    showSuccess.value = true
+    // Reload page with success parameters
+    window.location.href = `${window.location.pathname}?step=final&fileNumber=${fileNumber.value}&formType=${isOnRenovationDampleur.value ? 'renovation-dampleur' : 'pac-ssc'}`
   } catch (error) {
     console.error('Erreur:', error)
   }
