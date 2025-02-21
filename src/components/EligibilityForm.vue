@@ -481,6 +481,7 @@ const eligibilityForm = computed(
             type: 'tel',
             placeholder: '06 12 34 56 78',
             value: '',
+            maxlength: 10,
           },
         ],
       },
