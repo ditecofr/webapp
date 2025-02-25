@@ -632,8 +632,9 @@ const submitForm = async () => {
     // Reload page with success parameters
     window.location.href = `${window.location.pathname}?step=final&fileNumber=${fileNumber.value}&formType=${isOnRenovationDampleur.value ? 'renovation-dampleur' : 'pac-ssc'}`
 
-    // Track success with Facebook Pixel
+    // Track success with Facebook Pixel and TikTok Pixel
     window.fbq('track', 'Lead')
+    window.ttq.track('CompleteRegistration')
   } catch (error) {
     console.error('Erreur:', error)
   }
@@ -738,10 +739,16 @@ type FacebookPixel = {
   (event: 'trackCustom', eventName: string, params?: Record<string, unknown>): void
 }
 
-// Declare fbq as a global property of window with the appropriate type
+// Define the type for ttq
+type TikTokPixel = {
+  track: (event: string, params?: Record<string, unknown>) => void
+}
+
+// Declare fbq and ttq as global properties of window with the appropriate type
 declare global {
   interface Window {
     fbq: FacebookPixel
+    ttq: TikTokPixel
   }
 }
 </script>
