@@ -189,7 +189,6 @@
 import { ref, computed } from 'vue'
 import { CheckIcon } from 'lucide-vue-next'
 import type { LucideIcon } from 'lucide-vue-next'
-import { useRoute } from 'vue-router'
 
 interface EligibilityForm {
   title: string
@@ -577,10 +576,8 @@ const getFormattedFormType = (type: string) => {
   return mapping[type as keyof typeof mapping] || type
 }
 
-const route = useRoute()
-
-const showSuccess = ref(route.query.step === 'final')
-const fileNumber = ref((route.query.fileNumber as string) || generateFileNumber())
+const showSuccess = ref(false)
+const fileNumber = ref(generateFileNumber())
 
 const submitForm = async () => {
   try {
@@ -629,8 +626,8 @@ const submitForm = async () => {
       throw new Error("Erreur lors de l'envoi du formulaire")
     }
 
-    // Reload page with success parameters
-    window.location.href = `${window.location.pathname}?step=final&fileNumber=${fileNumber.value}&formType=${isOnRenovationDampleur.value ? 'renovation-dampleur' : 'pac-ssc'}`
+    // Show success state directly without page reload
+    showSuccess.value = true
 
     // Track success with Facebook Pixel and TikTok Pixel
     window.fbq('track', 'Lead')
