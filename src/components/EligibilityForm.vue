@@ -631,6 +631,9 @@ const submitForm = async () => {
 
     // Reload page with success parameters
     window.location.href = `${window.location.pathname}?step=final&fileNumber=${fileNumber.value}&formType=${isOnRenovationDampleur.value ? 'renovation-dampleur' : 'pac-ssc'}`
+
+    // Track success with Facebook Pixel
+    window.fbq('track', 'Lead')
   } catch (error) {
     console.error('Erreur:', error)
   }
@@ -726,5 +729,19 @@ const getIncomeOptions = () => {
 const isIleDeFrance = (postalCode: string) => {
   const prefix = postalCode.substring(0, 2)
   return ['75', '77', '78', '91', '92', '93', '94', '95'].includes(prefix)
+}
+
+// Define the type for fbq
+type FacebookPixel = {
+  (event: 'init', pixelId: string): void
+  (event: 'track', eventName: string, params?: Record<string, unknown>): void
+  (event: 'trackCustom', eventName: string, params?: Record<string, unknown>): void
+}
+
+// Declare fbq as a global property of window with the appropriate type
+declare global {
+  interface Window {
+    fbq: FacebookPixel
+  }
 }
 </script>
