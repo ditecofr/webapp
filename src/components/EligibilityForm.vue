@@ -111,6 +111,9 @@
                   : 'focus:ring-primary-blue focus:border-primary-blue',
               ]"
               @input="(e) => updateFormResponse(e, input.label)"
+              pattern="[0-9]{1,10}"
+              :maxlength="10"
+              :title="'Le numéro doit contenir uniquement des chiffres (10 maximum)'"
             />
           </div>
         </div>
@@ -603,7 +606,7 @@ const submitForm = async () => {
       householdSize: (formResponses.value[6] as Record<string, string>)[
         'Nombre de personnes dans votre foyer (vous compris)'
       ],
-      shareIncome: formResponses.value[7] as string,
+      shareIncome: getLabel(7, formResponses.value[7] as string),
       incomeLevel: getFormattedIncomeLevel(formResponses.value[8] as string),
       fullName: (formResponses.value[9] as Record<string, string>)['Nom complet'],
       email: (formResponses.value[9] as Record<string, string>)['Adresse email'],
