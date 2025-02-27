@@ -603,7 +603,7 @@ const submitForm = async () => {
       householdSize: (formResponses.value[6] as Record<string, string>)[
         'Nombre de personnes dans votre foyer (vous compris)'
       ],
-      shareIncome: getLabel(7, formResponses.value[7] as string),
+      shareIncome: formResponses.value[7] as string,
       incomeLevel: getFormattedIncomeLevel(formResponses.value[8] as string),
       fullName: (formResponses.value[9] as Record<string, string>)['Nom complet'],
       email: (formResponses.value[9] as Record<string, string>)['Adresse email'],
