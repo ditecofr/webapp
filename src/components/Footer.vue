@@ -74,9 +74,21 @@
           <div class="space-y-4">
             <h3 class="text-xl font-bold">Informations légales</h3>
             <ul class="space-y-2">
-              <li><a href="#" class="hover:underline">Mentions légales</a></li>
-              <li><a href="#" class="hover:underline">Politique de confidentialité</a></li>
-              <li><a href="#" class="hover:underline">CGU</a></li>
+              <li>
+                <router-link to="/mentions-legales" class="hover:underline"
+                  >Mentions légales</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/politique-de-confidentialite" class="hover:underline"
+                  >Politique de confidentialité</router-link
+                >
+              </li>
+              <li>
+                <router-link to="/conditions-generales-de-vente" class="hover:underline"
+                  >CGV</router-link
+                >
+              </li>
             </ul>
           </div>
         </div>

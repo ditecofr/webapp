@@ -24,7 +24,25 @@ const router = createRouter({
       name: 'eligibility',
       component: () => import('../views/EligibilityView.vue'),
     },
+    {
+      path: '/mentions-legales',
+      name: 'legal-mentions',
+      component: () => import('../views/LegalView.vue'),
+    },
+    {
+      path: '/politique-de-confidentialite',
+      name: 'privacy-policy',
+      component: () => import('../views/PrivacyPolicyView.vue'),
+    },
+    {
+      path: '/conditions-generales-de-vente',
+      name: 'cgv',
+      component: () => import('../views/TermsView.vue'),
+    },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0 }
+  },
 })
 
 export default router

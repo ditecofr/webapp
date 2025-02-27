@@ -7,8 +7,7 @@
 
       <!-- Mobile burger menu -->
       <button @click="isMenuOpen = !isMenuOpen" class="md:hidden">
-        <Menu v-if="!isMenuOpen" class="text-white" :size="24" />
-        <X v-else class="text-white" :size="24" />
+        <Menu :class="isLegalPage ? 'text-gray-900' : 'text-white'" :size="24" />
       </button>
 
       <!-- Desktop menu -->
@@ -101,4 +100,8 @@ const menuItems = [
     href: `/eligibility?formType=${isOnRenovationDampleur.value ? 'majorRenovation' : 'heatPump'}`,
   },
 ]
+
+const props = defineProps<{
+  isLegalPage?: boolean
+}>()
 </script>
