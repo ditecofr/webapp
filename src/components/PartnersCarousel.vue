@@ -44,6 +44,7 @@ const baseLogos = [
   new URL('@/assets/partners/logo-qualipac.png', import.meta.url).href,
   new URL('@/assets/partners/logo-qualisol.png', import.meta.url).href,
   new URL('@/assets/partners/logo-synerciel.png', import.meta.url).href,
+  new URL('@/assets/partners/logo-diteco.png', import.meta.url).href,
 ]
 
 // Duplicate the list to create a seamless loop
